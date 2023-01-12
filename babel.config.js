@@ -9,6 +9,9 @@ plugins.push([
     alias: {
       '@': './src',
       '@images': './src/assets/images',
+      '@hooks': './src/hooks',
+      '@features': './src/features',
+      '@navigation': './src/navigation'
     },
   },
 ]);

@@ -1,21 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Image } from 'react-native';
+//import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import { useFormik } from 'formik';
 import { Box, FormControl, Input, VStack, Button } from 'native-base';
+//import { RootStackParamList } from '../../navigation/StackNavigator';
 import images from '@images';
-
+import { useAppDispatch } from '@hooks';
+import { signIn, selectLoading } from './authSlice';
+import { UserCredentials } from './types';
 import styles from './styles';
 
-interface LoginValues {
-  email: string;
-  password: string;
-}
+//type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = ({ navigation }) => {
-  const { handleSubmit, values, setFieldValue } = useFormik<LoginValues>({
+const LoginScreen = (/* { navigation }: LoginProps */) => {
+  const dispatch = useAppDispatch();
+  const loading = useSelector(selectLoading);
+  const { handleSubmit, values, setFieldValue } = useFormik<UserCredentials>({
     initialValues: { email: '', password: '' },
-    onSubmit: valuess => {
-      console.log('on submitttt: ', valuess);
+    onSubmit: credentials => {
+      dispatch(signIn(credentials));
     },
   });
 
@@ -27,7 +32,11 @@ const LoginScreen = ({ navigation }) => {
         <Image source={images.logo} style={styles.logo} />
         <FormControl isRequired>
           <FormControl.Label>Email</FormControl.Label>
-          <Input onChangeText={value => setFieldValue('email', value)} value={values.email} />
+          <Input
+            onChangeText={value => setFieldValue('email', value)}
+            value={values.email}
+            isDisabled={loading}
+          />
         </FormControl>
         <FormControl isRequired>
           <FormControl.Label>Password</FormControl.Label>
@@ -35,6 +44,7 @@ const LoginScreen = ({ navigation }) => {
             onChangeText={value => setFieldValue('password', value)}
             value={values.password}
             type="password"
+            isDisabled={loading}
           />
         </FormControl>
         <Button
@@ -42,7 +52,8 @@ const LoginScreen = ({ navigation }) => {
           colorScheme="indigo"
           marginTop={8}
           isDisabled={disabledButton}
-          onPress={() => navigation.navigate('Dashboard')}>
+          isLoading={loading}
+          onPress={handleSubmit}>
           Sign in
         </Button>
       </VStack>

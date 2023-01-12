@@ -3,5 +3,10 @@
 System.config({
   paths: {
     '@/*': './src/*',
+    '@images': './src/assets/images',
+    '@hooks': './src/hooks',
+    '@features': './src/features',
+    '@navigation': './src/navigation',
+    '@navigation/*': './src/navigation/*'
   },
 });
