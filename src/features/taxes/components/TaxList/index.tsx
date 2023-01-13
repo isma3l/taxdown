@@ -1,11 +1,27 @@
 import React from 'react';
-import { Box } from 'native-base';
+import { Box, HStack, VStack, Text, Button, ScrollView, FlatList } from 'native-base';
+import TaxItem from '../TaxItem';
+import { Tax } from '../../types';
 
 type TaxListProps = {
-  title: string;
-  active: boolean;
+  taxes: Tax[];
+  showActive: boolean;
 };
 
-export const TaxList = ({ title, active }: TaxListProps) => {
-  return <Box>{title}</Box>;
+export const TaxList = ({ taxes, showActive }: TaxListProps) => {
+  const list = taxes.filter(tax => tax.active === showActive);
+  return (
+    <Box
+      rounded="lg"
+      borderColor="coolGray.200"
+      borderWidth="1"
+      margin={4}
+      background="white"
+      padding={2}>
+      <FlatList
+        data={list}
+        renderItem={({ item }) => <TaxItem name={item.name} year={item.year} />}
+      />
+    </Box>
+  );
 };

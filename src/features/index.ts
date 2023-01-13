@@ -1,3 +1,4 @@
-export { LoginScreen, AuthReducer } from './login';
+export { Login, AuthReducer } from './login';
 export { Taxes } from './taxes';
-export { SubmissionCreationScreen } from './submissionCreation';
+export { NewSubmission } from './newSubmission';
+export { TaxSubmissions } from './taxSubmissions';

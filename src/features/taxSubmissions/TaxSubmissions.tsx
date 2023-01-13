@@ -5,7 +5,7 @@ import images from '@images';
 
 //import styles from './styles';
 
-const SubmissionCreationScreen = () => {
+const TaxSubmissions = () => {
   return (
     <Box safeArea alignItems="center">
       <VStack space={4} width="80%" marginTop="20">
@@ -18,4 +18,4 @@ const SubmissionCreationScreen = () => {
   );
 };
 
-export default SubmissionCreationScreen;
+export default TaxSubmissions;

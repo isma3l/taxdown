@@ -1,4 +1,4 @@
 export const LOGIN = 'Login';
-export const DASHBOARD = 'Dashboard';
 export const TAXES = 'Taxes';
-export const SUBMISSION_CREATION = 'SubmissionCreation';
+export const NEW_SUBMISSION = 'NewSubmission';
+export const TAX_SUBMISSIONS = 'TaxSubmissions';

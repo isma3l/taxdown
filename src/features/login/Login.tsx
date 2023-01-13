@@ -14,7 +14,7 @@ import styles from './styles';
 
 //type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = (/* { navigation }: LoginProps */) => {
+const Login = (/* { navigation }: LoginProps */) => {
   const dispatch = useAppDispatch();
   const loading = useSelector(selectLoading);
   const { handleSubmit, values, setFieldValue } = useFormik<UserCredentials>({
@@ -61,4 +61,4 @@ const LoginScreen = (/* { navigation }: LoginProps */) => {
   );
 };
 
-export default LoginScreen;
+export default Login;
