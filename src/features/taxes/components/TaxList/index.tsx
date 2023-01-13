@@ -8,7 +8,7 @@ type TaxListProps = {
   showActive: boolean;
 };
 
-export const TaxList = ({ taxes, showActive }: TaxListProps) => {
+const TaxList = ({ taxes, showActive }: TaxListProps) => {
   const list = taxes.filter(tax => tax.active === showActive);
   return (
     <Box
@@ -25,3 +25,5 @@ export const TaxList = ({ taxes, showActive }: TaxListProps) => {
     </Box>
   );
 };
+
+export default TaxList;
