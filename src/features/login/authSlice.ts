@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState, UserCredentials, AuthRequest, AuthResponse } from './types';
 import { navigate } from '@navigation/RootNavigation';
 import { RootState } from '@/store';
+import { TAXES } from '@navigation/Routes';
 
 const initialState: AuthState = {
   user: { email: '' },
@@ -17,7 +18,7 @@ export const signIn = createAsyncThunk<AuthRequest, AuthResponse>(
         resolve(true);
       }, 1500);
     });
-    navigate('Dashboard');
+    navigate(TAXES);
     return params;
   },
 );

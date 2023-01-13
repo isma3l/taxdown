@@ -1,1 +1,1 @@
-export { default as TaxesScreen } from './taxes';
+export { default as Taxes } from './Taxes';

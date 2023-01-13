@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { TAX_LIST, SUBMISSION_CREATION } from '../Routes';
-import { TaxesScreen, SubmissionCreationScreen } from '@/features';
+import { TAXES, SUBMISSION_CREATION } from '../Routes';
+import { Taxes, SubmissionCreationScreen } from '@/features';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,8 +27,8 @@ const TabNavigator = () => {
         headerShown: false,
       })}>
       <Tab.Screen
-        name={TAX_LIST}
-        component={TaxesScreen}
+        name={TAXES}
+        component={Taxes}
         //        screenOptions={{ headerShown: false }}
       />
       <Tab.Screen name={SUBMISSION_CREATION} component={SubmissionCreationScreen} />
