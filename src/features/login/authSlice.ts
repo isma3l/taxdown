@@ -16,7 +16,7 @@ export const signIn = createAsyncThunk<AuthRequest, AuthResponse>(
     await new Promise(resolve => {
       setTimeout(() => {
         resolve(true);
-      }, 1500);
+      }, 500);
     });
     navigate(TAXES);
     return params;

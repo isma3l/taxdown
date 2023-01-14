@@ -1,1 +1,1 @@
-export { default as NewSubmission } from './SubmissionCreation';
+export { default as NewSubmission } from './NewSubmission';

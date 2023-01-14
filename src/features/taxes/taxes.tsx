@@ -25,7 +25,7 @@ const Taxes = () => {
   }, [dispatch]);
 
   return (
-    <Box flex="1" safeAreaTop>
+    <Box flex="1" safeArea>
       <Header />
       <Heading size="md" padding={3}>
         Mis impuestos
