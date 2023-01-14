@@ -11,7 +11,8 @@ plugins.push([
       '@images': './src/assets/images',
       '@hooks': './src/hooks',
       '@features': './src/features',
-      '@navigation': './src/navigation'
+      '@navigation': './src/navigation',
+      "@services": "./src/dataSource/api/services",
     },
   },
 ]);

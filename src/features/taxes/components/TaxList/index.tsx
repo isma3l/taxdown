@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, HStack, VStack, Text, Button, ScrollView, FlatList } from 'native-base';
 import TaxItem from '../TaxItem';
-import { Tax } from '../../types';
+import { Tax } from '@/model';
 
 type TaxListProps = {
   taxes: Tax[];

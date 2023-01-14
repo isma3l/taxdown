@@ -7,6 +7,7 @@ System.config({
     '@hooks': './src/hooks',
     '@features': './src/features',
     '@navigation': './src/navigation',
-    '@navigation/*': './src/navigation/*'
+    '@navigation/*': './src/navigation/*',
+    "@services": ["./src/dataSource/api/services"]
   },
 });
