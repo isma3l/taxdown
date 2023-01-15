@@ -1,9 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { AuthReducer, TaxesReducer } from '@features';
+import { AuthReducer, taxesReducer, submissionsReducer } from '@features';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
-  taxesReducer: TaxesReducer,
+  taxesReducer: taxesReducer,
+  submissionReducer: submissionsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

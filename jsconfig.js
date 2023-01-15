@@ -4,7 +4,9 @@ System.config({
   paths: {
     '@/*': './src/*',
     '@images': './src/assets/images',
+    '@store': './src/store',
     '@hooks': './src/hooks',
+    '@model': './src/model',
     '@features': './src/features',
     '@navigation': './src/navigation',
     '@navigation/*': './src/navigation/*',

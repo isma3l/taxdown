@@ -1,4 +1,4 @@
 export { Login, AuthReducer } from './login';
-export { Taxes, TaxesReducer } from './taxes';
-export { NewSubmission } from './newSubmission';
+export { Taxes, taxesReducer } from './taxes';
+export { Submission, submissionsReducer } from './submission';
 export { TaxSubmissions } from './taxSubmissions';

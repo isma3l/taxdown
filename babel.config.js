@@ -8,8 +8,10 @@ plugins.push([
     extensions: ['.js', '.json'],
     alias: {
       '@': './src',
+      '@store': './src/store',
       '@images': './src/assets/images',
       '@hooks': './src/hooks',
+      '@model': './src/model',
       '@features': './src/features',
       '@navigation': './src/navigation',
       "@services": "./src/dataSource/api/services",

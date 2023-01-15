@@ -15,7 +15,7 @@ const initialState: TaxesState = {
   error: false,
 };
 
-const TaxesSlice = createSlice({
+const taxesSlice = createSlice({
   name: 'taxesReducer',
   initialState,
   reducers: {},
@@ -37,4 +37,4 @@ const TaxesSlice = createSlice({
 });
 
 export const selectorTaxes = (state: RootState) => state.taxesReducer.taxes;
-export default TaxesSlice.reducer;
+export default taxesSlice.reducer;

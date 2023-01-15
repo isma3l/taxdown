@@ -3,5 +3,6 @@
         "activityBar.background": "#23311D",
         "titleBar.activeBackground": "#314528",
         "titleBar.activeForeground": "#FAFCFA"
-    }
+    },
+    "java.compile.nullAnalysis.mode": "disabled"
 }

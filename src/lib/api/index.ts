@@ -10,4 +10,9 @@ const axiosConfig = {
   timeout: 5000,
 };
 
-export const apiClient = axios.create(axiosConfig);
+const apiClient = axios.create(axiosConfig);
+
+export async function get<T>(url: string): Promise<T> {
+  const { data } = await apiClient.get(url);
+  return data;
+}

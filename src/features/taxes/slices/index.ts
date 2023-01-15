@@ -1,2 +1,2 @@
-export { default as TaxesReducer, selectorTaxes } from './taxesSlice';
+export { default as taxesReducer, selectorTaxes } from './taxesSlice';
 export { fetchTaxes } from './taxesActions';

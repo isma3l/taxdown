@@ -11,6 +11,8 @@
       "@/*": ["./*"],
       "@images": ["./assets/images"],
       "@hooks": ["./hooks"],
+      "@store": ["./store"],
+      "@model": ["./model"],
       "@features": ["./features"],
       "@navigation": ["./navigation"],
       "@navigation/*": ["./navigation/*"],

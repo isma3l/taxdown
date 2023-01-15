@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "fake-api": "json-server --watch data/db.json --port 8000"
+    "fake-api": "json-server --watch data/db.json --routes data/routes.json --port 8000"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.3",
