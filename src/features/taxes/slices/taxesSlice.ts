@@ -36,5 +36,12 @@ const taxesSlice = createSlice({
   },
 });
 
-export const selectorTaxes = (state: RootState) => state.taxesReducer.taxes;
+export const selectTaxes = (state: RootState) => state.taxesReducer.taxes;
+
+export const selectActiveTaxes = (state: RootState) =>
+  state.taxesReducer.taxes.filter(tax => tax.active === true);
+
+export const selectInactiveTaxes = (state: RootState) =>
+  state.taxesReducer.taxes.filter(tax => tax.active === false);
+
 export default taxesSlice.reducer;

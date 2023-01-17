@@ -5,11 +5,9 @@ import { Tax } from '@/model';
 
 type TaxListProps = {
   taxes: Tax[];
-  showActive: boolean;
 };
 
-const TaxList = ({ taxes, showActive }: TaxListProps) => {
-  const list = taxes.filter(tax => tax.active === showActive);
+const TaxList = ({ taxes }: TaxListProps) => {
   return (
     <Box
       rounded="lg"
@@ -18,7 +16,13 @@ const TaxList = ({ taxes, showActive }: TaxListProps) => {
       margin={4}
       background="white"
       padding={2}>
-      <FlatList data={list} renderItem={({ item }) => <TaxItem {...item} />} />
+      {taxes.length === 0 ? (
+        <Box padding={4} justifyContent="center" alignItems="center">
+          <Text>No hay impuestos en esta seccion</Text>
+        </Box>
+      ) : (
+        <FlatList data={taxes} renderItem={({ item }) => <TaxItem {...item} />} />
+      )}
     </Box>
   );
 };
