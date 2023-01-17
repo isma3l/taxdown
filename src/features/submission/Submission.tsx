@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Image } from 'react-native';
 import { Box, Button, HStack, Text, IconButton, Icon, FormControl, VStack } from 'native-base';
-import { useFormik } from 'formik';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
@@ -15,15 +14,8 @@ import images from '@images';
 //import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { Field } from './components';
-import { Input } from '@/model';
 
 type SubmissionProps = NativeStackScreenProps<RootStackParamList, 'Submission'>;
-
-type Rules = {
-  required: boolean;
-  maxLength?: number;
-  pattern?: any;
-};
 
 const Submission = ({ route }: SubmissionProps) => {
   const {
@@ -41,40 +33,9 @@ const Submission = ({ route }: SubmissionProps) => {
     dispatch(fetchForm('lala'));
   }, [dispatch]);
 
-  const generateRules = (input: Input): Rules => {
-    const { type } = input;
-    let rules: Rules = {
-      required: true,
-    };
-    if (type === 'text') {
-      rules.maxLength = 4; //input.maxLength;
-    }
-
-    if (type === 'number') {
-      rules.pattern = /^(0|[1-9][0-9]*)$/;
-    }
-
-    return rules;
-  };
-
   const onSubmit = (data: any) => {
     console.log(data);
   };
-
-  const dynamicFields = inputsFields.map((input, index) => {
-    const rules = generateRules(input);
-    return (
-      <Controller
-        key={index}
-        name={input.id}
-        control={control}
-        rules={rules}
-        render={({ field: { onChange, value } }) => (
-          <Field key={index} {...input} onchange={onChange} value={value} errors={errors} />
-        )}
-      />
-    );
-  });
 
   return (
     <VStack safeArea flex="1">
@@ -87,8 +48,10 @@ const Submission = ({ route }: SubmissionProps) => {
         justifyContent="space-between"
         background="white"
         width="90%">
-        <VStack space={10} width="100%" padding="8">
-          {dynamicFields}
+        <VStack width="100%" paddingX="8" paddingTop="4">
+          {inputsFields.map((inputField, index) => (
+            <Field key={index} {...inputField} control={control} errors={errors} />
+          ))}
         </VStack>
         <Button
           mt="2"
@@ -103,30 +66,4 @@ const Submission = ({ route }: SubmissionProps) => {
   );
 };
 
-/*
-<Box safeArea flex="1" alignItems="center">
-      <VStack space={4} width="80%" marginTop={20}>
-        {fields.map((input, index) => (
-          <Field key={index} {...input} />
-        ))}
-        <Button
-          mt="2"
-          colorScheme="indigo"
-          marginTop={8}
-          onPress={() =>
-            dispatch(
-              createSubmission({
-                taxId: '1',
-                name: 'pelusa',
-                surname: 'gata',
-                age: 12,
-                picture: 'imagen',
-              }),
-            )
-          }>
-          Creaacion de impuestos
-        </Button>
-      </VStack>
-    </Box>
-*/
 export default Submission;

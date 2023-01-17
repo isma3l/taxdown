@@ -1,37 +1,46 @@
 import React from 'react';
 import { Box, HStack, VStack, Text, Button, FormControl, Input } from 'native-base';
+import { Controller } from 'react-hook-form';
 
 export interface INumberField {
   id: string;
   label: string;
   placeholder: string;
-  value: any;
+  control: any;
   errors: any;
-  onchange: (value: any) => void;
 }
 
-const NumberField = ({ id, label, placeholder, value, onchange, errors }: INumberField) => {
+const NumberField = ({ id, label, placeholder, control, errors }: INumberField) => {
   const getErrorMessage = (type: string): string => {
     const errorMessage =
       type === 'required' ? 'Este campo es requerido' : 'Solo se permiten números';
     return errorMessage;
   };
 
-  console.log(errors);
   return (
-    <FormControl isRequired isInvalid={id in errors}>
-      <FormControl.Label>{label}</FormControl.Label>
-      <Input
-        placeholder={placeholder}
-        value={value}
-        onChangeText={onchange}
-        keyboardType="numeric"
-        returnKeyType="done"
-      />
-      {id in errors && (
-        <FormControl.ErrorMessage>{getErrorMessage(errors[id].type)}</FormControl.ErrorMessage>
+    <Controller
+      key={id}
+      name={id}
+      control={control}
+      rules={{ required: true, pattern: /^(0|[1-9][0-9]*)$/ }}
+      render={({ field: { onChange, value } }) => (
+        <FormControl isRequired isInvalid={id in errors} marginBottom="2">
+          <FormControl.Label _text={{ bold: true }}>{label}</FormControl.Label>
+          <Input
+            placeholder={placeholder}
+            value={value}
+            onChangeText={onChange}
+            keyboardType="numeric"
+            returnKeyType="done"
+          />
+          {id in errors ? (
+            <FormControl.ErrorMessage>{getErrorMessage(errors[id].type)}</FormControl.ErrorMessage>
+          ) : (
+            <FormControl.HelperText>Solo se permiten números</FormControl.HelperText>
+          )}
+        </FormControl>
       )}
-    </FormControl>
+    />
   );
 };
 
