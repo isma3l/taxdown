@@ -1,16 +1,12 @@
 import React from 'react';
 import { Box, HStack, VStack, Text, Button, FormControl, Input } from 'native-base';
 import { Controller } from 'react-hook-form';
+import { INumberField } from '@model';
+import { IBaseField } from '../Field';
 
-export interface INumberField {
-  id: string;
-  label: string;
-  placeholder: string;
-  control: any;
-  errors: any;
-}
+export type NumberFieldProps = INumberField & IBaseField;
 
-const NumberField = ({ id, label, placeholder, control, errors }: INumberField) => {
+const NumberField = ({ id, label, placeholder, control, errors }: NumberFieldProps) => {
   const getErrorMessage = (type: string): string => {
     const errorMessage =
       type === 'required' ? 'Este campo es requerido' : 'Solo se permiten números';

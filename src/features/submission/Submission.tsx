@@ -2,17 +2,10 @@ import React, { useEffect } from 'react';
 import { Image } from 'react-native';
 import { Box, Button, HStack, Text, IconButton, Icon, FormControl, VStack } from 'native-base';
 import { useForm } from 'react-hook-form';
-
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
-
 import { useAppDispatch, useTypedSelector } from '@/hooks';
-import { selectorForm, fetchForm, createSubmission } from './slices';
-
-import images from '@images';
-//import { AntDesign } from '@expo/vector-icons';
-//import styles from './styles';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { selectInputFields, fetchForm, createSubmission } from './slices';
 import { Field } from './components';
 
 type SubmissionProps = NativeStackScreenProps<RootStackParamList, 'Submission'>;
@@ -26,12 +19,11 @@ const Submission = ({ route }: SubmissionProps) => {
 
   const dispatch = useAppDispatch();
   const { taxId } = route?.params;
-  const inputsFields = useTypedSelector(selectorForm);
+  const inputsFields = useTypedSelector(selectInputFields);
 
   useEffect(() => {
-    console.log('pide form');
-    dispatch(fetchForm('lala'));
-  }, [dispatch]);
+    dispatch(fetchForm(taxId));
+  }, [dispatch, taxId]);
 
   const onSubmit = (data: any) => {
     console.log(data);

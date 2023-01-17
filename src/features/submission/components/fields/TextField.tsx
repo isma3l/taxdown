@@ -1,17 +1,12 @@
 import React from 'react';
 import { Box, HStack, VStack, Text, Button, FormControl, Input } from 'native-base';
 import { Controller } from 'react-hook-form';
+import { ITextField } from '@model';
+import { IBaseField } from '../Field';
 
-export interface ITextField {
-  id: string;
-  label: string;
-  placeholder: string;
-  maxLength: number;
-  errors: any;
-  control: any;
-}
+export type TextFieldProps = ITextField & IBaseField;
 
-const TextField = ({ id, label, placeholder, errors, maxLength, control }: ITextField) => {
+const TextField = ({ id, label, placeholder, errors, maxLength, control }: TextFieldProps) => {
   const getErrorMessage = (type: string): string => {
     const errorMessage =
       type === 'required' ? 'Este campo es requerido' : `Máximo ${maxLength} caracteres`;

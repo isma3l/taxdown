@@ -1,6 +1,6 @@
 export {
   default as submissionsReducer,
-  selectorForm,
-  selectorSubmissions,
+  selectInputFields,
+  selectSubmissions,
 } from './submissionSlice';
 export { fetchForm, createSubmission } from './submissionActions';

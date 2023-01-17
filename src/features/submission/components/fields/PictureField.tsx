@@ -1,52 +1,13 @@
 import React from 'react';
 import { Box, HStack, VStack, Text, Button, FormControl, Input } from 'native-base';
-import { launchCamera, MediaType } from 'react-native-image-picker';
-
+import { launchNativeCamera } from '@/utils';
 import { Controller } from 'react-hook-form';
+import { IPictureField } from '@model';
+import { IBaseField } from '../Field';
 
-export interface IPictureField {
-  id: string;
-  label: string;
-  errors: any;
-  control: any;
-}
+export type PictureFieldProps = IPictureField & IBaseField;
 
-const PictureField = ({ id, label, errors, control }: IPictureField) => {
-  const setImagePath = (onChange: any) => {
-    onChange('soy una imagen');
-  };
-
-  const launchNativeCamera = async (callback: (result: string) => void) => {
-    const mediaType: MediaType = 'mixed';
-
-    let options = {
-      saveToPhotos: true,
-      mediaType: mediaType,
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    await launchCamera(options, response => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.errorCode) {
-        console.log('ImagePicker Error: ', response.errorMessage);
-      } else {
-        const path = response?.assets[0].uri ?? 'no hay';
-        console.log('path: ', path);
-        callback(path);
-      }
-    });
-  };
-
-  /*
-       onPress={() => {
-              setImagePath(onChange);
-            }}>
-  */
+const PictureField = ({ id, label, errors, control }: PictureFieldProps) => {
   return (
     <Controller
       key={id}

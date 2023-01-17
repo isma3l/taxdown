@@ -1,11 +1,11 @@
 import { get, post } from '@/lib';
 import { IField } from '../components/Field';
-import { Submission } from '@/model';
+import { Submission, InputField } from '@/model';
 
-export const getSubmissionForm = async (taxId: string): Promise<IField[]> => {
+export const getSubmissionForm = async (taxId: string): Promise<InputField[]> => {
   const URL = `taxes/${taxId}/form`;
-  /*
-  const obj: IField[] = [
+
+  const obj: InputField[] = [
     {
       id: 'name',
       label: 'Name',
@@ -32,9 +32,9 @@ export const getSubmissionForm = async (taxId: string): Promise<IField[]> => {
       type: 'picture',
     },
   ];
- */
-  const { inputFields } = await get<{ inputFields: IField[] }>(URL);
-  return inputFields;
+
+  //const { inputFields } = await get<{ inputFields: InputField[] }>(URL);
+  return obj;
 };
 
 export const addSubmission = async (submission: Submission): Promise<Submission> => {

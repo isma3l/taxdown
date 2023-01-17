@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getSubmissionForm, addSubmission } from '../services';
-import { Submission } from '@model';
-import { IField } from '../components/Field';
+import { Submission, InputField } from '@model';
 
-export const fetchForm = createAsyncThunk<IField[], string>(
+export const fetchForm = createAsyncThunk<InputField[], string>(
   'form/fetch',
   async (taxId, { rejectWithValue }) => {
     try {

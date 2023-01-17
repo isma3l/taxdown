@@ -1,3 +1,3 @@
 export type { Tax } from './Tax';
-export type { Input } from './Input';
+export type { InputField, ITextField, INumberField, IPictureField } from './Input';
 export type { Submission } from './Submission';

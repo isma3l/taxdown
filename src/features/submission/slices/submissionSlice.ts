@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchForm, createSubmission } from './submissionActions';
 import { RootState } from '@store';
 import { IField } from '../components/Field';
-import { Submission } from '@model';
+import { Submission, InputField } from '@model';
 
 type SubmissionState = {
   loading: boolean;
   error: boolean;
-  fields: IField[];
+  inputFields: InputField[];
   submissions: Submission[];
 };
 
 const initialState: SubmissionState = {
   loading: false,
-  fields: [],
+  inputFields: [],
   error: false,
   submissions: [],
 };
@@ -26,10 +26,10 @@ const submissionSlice = createSlice({
     builder.addCase(fetchForm.pending, state => {
       state.loading = true;
     });
-    builder.addCase(fetchForm.fulfilled, (state, action: PayloadAction<IField[]>) => {
+    builder.addCase(fetchForm.fulfilled, (state, action: PayloadAction<InputField[]>) => {
       state.loading = false;
       state.error = false;
-      state.fields = action.payload;
+      state.inputFields = action.payload;
     });
     builder.addCase(fetchForm.rejected, state => {
       state.loading = false;
@@ -50,6 +50,8 @@ const submissionSlice = createSlice({
   },
 });
 
-export const selectorForm = (state: RootState) => state.submissionReducer.fields;
-export const selectorSubmissions = (state: RootState) => state.submissionReducer.submissions;
+export const selectInputFields = (state: RootState) => state.submissionReducer.inputFields;
+
+export const selectSubmissions = (state: RootState) => state.submissionReducer.submissions;
+
 export default submissionSlice.reducer;

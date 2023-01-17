@@ -1,26 +1,19 @@
 import React from 'react';
 import {
-  INumberField,
   NumberField,
-  IPictureField,
+  NumberFieldProps,
   PictureField,
-  ITextField,
+  PictureFieldProps,
   TextField,
+  TextFieldProps,
 } from './fields';
 
-export interface ITypeNumberField extends INumberField {
-  type: 'number';
+export interface IBaseField {
+  control: any;
+  errors: any;
 }
 
-export interface ITypeTextField extends ITextField {
-  type: 'text';
-}
-
-export interface ITypePictureField extends IPictureField {
-  type: 'picture';
-}
-
-export type IField = ITypeNumberField | ITypeTextField | ITypePictureField;
+export type IField = NumberFieldProps | PictureFieldProps | TextFieldProps;
 
 export const Field = (props: IField) => {
   switch (props.type) {
