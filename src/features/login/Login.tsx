@@ -17,14 +17,25 @@ import styles from './styles';
 const Login = (/* { navigation }: LoginProps */) => {
   const dispatch = useAppDispatch();
   const loading = useSelector(selectLoading);
-  const { handleSubmit, values, setFieldValue } = useFormik<UserCredentials>({
+  const { handleSubmit, errors, isValid, values, setFieldValue } = useFormik<UserCredentials>({
     initialValues: { email: '', password: '' },
+    validate: ({ email, password }) => {
+      console.log('email: ', email, ' password: ', password);
+      let errores = {};
+      if (email.length == 0 || email.length > 4) {
+        errores.email = 'Este campo no debe exceder 4 caraceters';
+      }
+      if (password.length > 5) {
+        errores.password = 'Este campo no debe exceder 4 caraceters';
+      }
+      return errores;
+    },
     onSubmit: credentials => {
       dispatch(signIn(credentials));
     },
   });
 
-  const disabledButton = !(values.email && values.password);
+  const disabledButton = !isValid;
 
   return (
     <Box safeArea alignItems="center">

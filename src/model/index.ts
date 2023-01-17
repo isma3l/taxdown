@@ -1,2 +1,3 @@
 export type { Tax } from './Tax';
-export type { TypeInput, Input } from './Input';
+export type { Input } from './Input';
+export type { Submission, Submission2 } from './Submission';

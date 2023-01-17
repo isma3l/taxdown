@@ -6,7 +6,7 @@ import { LOGIN, TAXES, SUBMISSION, TAX_SUBMISSIONS } from '../Routes';
 export type RootStackParamList = {
   Login: undefined;
   Taxes: undefined;
-  Submission: undefined;
+  Submission: { taxId: string };
   TaxSubmissions: undefined;
 };
 // screenOptions={{ headerShown: false }}

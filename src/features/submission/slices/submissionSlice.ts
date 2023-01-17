@@ -1,18 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Input } from '@model';
-import { fetchForm } from './submissionActions';
+import { fetchForm, createSubmission } from './submissionActions';
 import { RootState } from '@store';
+import { IField } from '../components/Field';
+import { Submission } from '@model';
 
 type SubmissionState = {
   loading: boolean;
-  form: Input[];
   error: boolean;
+  fields: IField[];
+  submissions: Submission[];
 };
 
 const initialState: SubmissionState = {
   loading: false,
-  form: [],
+  fields: [],
   error: false,
+  submissions: [],
 };
 
 const submissionSlice = createSlice({
@@ -22,19 +25,31 @@ const submissionSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(fetchForm.pending, state => {
       state.loading = true;
-      state.error = false;
     });
-    builder.addCase(fetchForm.fulfilled, (state, action: PayloadAction<Input[]>) => {
+    builder.addCase(fetchForm.fulfilled, (state, action: PayloadAction<IField[]>) => {
       state.loading = false;
       state.error = false;
-      state.form = action.payload;
+      state.fields = action.payload;
     });
     builder.addCase(fetchForm.rejected, state => {
+      state.loading = false;
+      state.error = true;
+    });
+    builder.addCase(createSubmission.pending, state => {
+      state.loading = false;
+    });
+    builder.addCase(createSubmission.fulfilled, (state, action: PayloadAction<Submission>) => {
+      state.submissions.push(action.payload);
+      state.error = false;
+      state.loading = false;
+    });
+    builder.addCase(createSubmission.rejected, state => {
       state.loading = false;
       state.error = true;
     });
   },
 });
 
-export const selectorForm = (state: RootState) => state.submissionReducer.form;
+export const selectorForm = (state: RootState) => state.submissionReducer.fields;
+export const selectorSubmissions = (state: RootState) => state.submissionReducer.submissions;
 export default submissionSlice.reducer;

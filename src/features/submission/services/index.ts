@@ -1,1 +1,1 @@
-export { getForm } from './submissions';
+export { getSubmissionForm, addSubmission } from './submissions';

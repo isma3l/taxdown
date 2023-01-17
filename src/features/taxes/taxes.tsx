@@ -14,14 +14,6 @@ const Taxes = () => {
 
   useEffect(() => {
     dispatch(fetchTaxes());
-    /*
-    https://redux-toolkit.js.org/api/createAsyncThunk#handling-thunk-errors
-    const promise = dispatch(fetchUserById(props.userId))
-    return () => {
-      // `createAsyncThunk` attaches an `abort()` method to the promise
-      promise.abort()
-    }
-    */
   }, [dispatch]);
 
   return (

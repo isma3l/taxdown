@@ -8,11 +8,6 @@ import {
   TextField,
 } from './fields';
 
-export interface IBaseField {
-  id: string;
-  label: string;
-}
-
 export interface ITypeNumberField extends INumberField {
   type: 'number';
 }

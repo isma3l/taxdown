@@ -4,14 +4,15 @@ import { navigate } from '@navigation/RootNavigation';
 import { SUBMISSION } from '@navigation/Routes';
 
 type TaxItemProps = {
+  id: string;
   name: string;
   year: string;
 };
 
-const TaxItem = ({ name, year }: TaxItemProps) => {
+const TaxItem = ({ name, year, id }: TaxItemProps) => {
   return (
     <Box marginBottom={4}>
-      <HStack justifyContent="space-between">
+      <HStack justifyContent="space-between" paddingX={2}>
         <VStack>
           <Text color="coolGray.600" bold>
             {name}
@@ -28,7 +29,7 @@ const TaxItem = ({ name, year }: TaxItemProps) => {
           padding="1"
           alignSelf="center"
           color="black"
-          onPress={() => navigate(SUBMISSION)}>
+          onPress={() => navigate(SUBMISSION, { taxId: id })}>
           Add
         </Button>
       </HStack>

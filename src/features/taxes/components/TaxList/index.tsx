@@ -18,10 +18,7 @@ const TaxList = ({ taxes, showActive }: TaxListProps) => {
       margin={4}
       background="white"
       padding={2}>
-      <FlatList
-        data={list}
-        renderItem={({ item }) => <TaxItem name={item.name} year={item.year} />}
-      />
+      <FlatList data={list} renderItem={({ item }) => <TaxItem {...item} />} />
     </Box>
   );
 };

@@ -5,5 +5,3 @@ export type Input = {
   maxLength?: number;
   placeholder?: string;
 };
-
-export type TypeInput = 'number' | 'text' | 'picture';
