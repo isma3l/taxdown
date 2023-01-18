@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, VStack, Text, Button, FormControl, Input } from 'native-base';
+import { HStack, Text, Button, FormControl, Input } from 'native-base';
 import { launchNativeCamera } from '@/utils';
 import { Controller } from 'react-hook-form';
 import { IPictureField } from '@model';

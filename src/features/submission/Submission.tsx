@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
-import { Image } from 'react-native';
-import { Box, Button, HStack, Text, IconButton, Icon, FormControl, VStack } from 'native-base';
+import { Box, Button, VStack, Spinner } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
 import { useAppDispatch, useTypedSelector } from '@/hooks';
-import { selectInputFields, fetchForm, createSubmission } from './slices';
+import {
+  selectInputFields,
+  fetchForm,
+  createSubmission,
+  selectLoadingFetch,
+  selectLoadingCreate,
+} from './slices';
 import { Field } from './components';
 
 type SubmissionProps = NativeStackScreenProps<RootStackParamList, 'Submission'>;
@@ -20,13 +25,16 @@ const Submission = ({ route }: SubmissionProps) => {
   const dispatch = useAppDispatch();
   const { taxId } = route?.params;
   const inputsFields = useTypedSelector(selectInputFields);
+  const loadingFetch = useTypedSelector(selectLoadingFetch);
+  const loadingCreate = useTypedSelector(selectLoadingCreate);
 
   useEffect(() => {
     dispatch(fetchForm(taxId));
   }, [dispatch, taxId]);
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (newSubmission: any) => {
+    dispatch(createSubmission({ ...newSubmission, taxId }));
+    console.log(newSubmission);
   };
 
   return (
@@ -40,19 +48,28 @@ const Submission = ({ route }: SubmissionProps) => {
         justifyContent="space-between"
         background="white"
         width="90%">
-        <VStack width="100%" paddingX="8" paddingTop="4">
-          {inputsFields.map((inputField, index) => (
-            <Field key={index} {...inputField} control={control} errors={errors} />
-          ))}
-        </VStack>
-        <Button
-          mt="2"
-          colorScheme="indigo"
-          marginBottom="8"
-          marginX="16"
-          onPress={handleSubmit(onSubmit)}>
-          Create submission
-        </Button>
+        {loadingFetch ? (
+          <Box justifyContent="center" alignItems="center" flex="1">
+            <Spinner size="lg" />
+          </Box>
+        ) : (
+          <>
+            <VStack width="100%" paddingX="8" paddingTop="4">
+              {inputsFields.map((inputField, index) => (
+                <Field key={index} {...inputField} control={control} errors={errors} />
+              ))}
+            </VStack>
+            <Button
+              mt="2"
+              colorScheme="indigo"
+              marginBottom="8"
+              marginX="16"
+              isDisabled={loadingCreate}
+              onPress={handleSubmit(onSubmit)}>
+              Create submission
+            </Button>
+          </>
+        )}
       </Box>
     </VStack>
   );

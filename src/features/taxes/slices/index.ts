@@ -3,5 +3,6 @@ export {
   selectTaxes,
   selectActiveTaxes,
   selectInactiveTaxes,
+  selectLoading,
 } from './taxesSlice';
 export { fetchTaxes } from './taxesActions';

@@ -44,4 +44,6 @@ export const selectActiveTaxes = (state: RootState) =>
 export const selectInactiveTaxes = (state: RootState) =>
   state.taxesReducer.taxes.filter(tax => tax.active === false);
 
+export const selectLoading = (state: RootState) => state.taxesReducer.loading;
+
 export default taxesSlice.reducer;

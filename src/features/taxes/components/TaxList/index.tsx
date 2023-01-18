@@ -1,27 +1,37 @@
 import React from 'react';
-import { Box, HStack, VStack, Text, Button, ScrollView, FlatList } from 'native-base';
+import { Box, HStack, VStack, Text, Button, Spinner, FlatList } from 'native-base';
+import { selectLoading } from '../../slices';
+
 import TaxItem from '../TaxItem';
 import { Tax } from '@/model';
+import { useTypedSelector } from '@/hooks';
 
 type TaxListProps = {
   taxes: Tax[];
 };
 
 const TaxList = ({ taxes }: TaxListProps) => {
+  const loading = useTypedSelector(selectLoading);
+
   return (
     <Box
       rounded="lg"
       borderColor="coolGray.200"
       borderWidth="1"
+      flex="1"
       margin={4}
       background="white"
       padding={2}>
-      {taxes.length === 0 ? (
-        <Box padding={4} justifyContent="center" alignItems="center">
-          <Text>No hay impuestos en esta seccion</Text>
+      {loading ? (
+        <Box justifyContent="center" alignItems="center" flex="1">
+          <Spinner size="lg" />
         </Box>
       ) : (
-        <FlatList data={taxes} renderItem={({ item }) => <TaxItem {...item} />} />
+        <FlatList
+          data={taxes}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <TaxItem {...item} />}
+        />
       )}
     </Box>
   );
