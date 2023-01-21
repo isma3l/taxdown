@@ -14,7 +14,7 @@ plugins.push([
       '@model': './src/model',
       '@features': './src/features',
       '@navigation': './src/navigation',
-      "@services": "./src/dataSource/api/services",
+      "@components": "./src/components"
     },
   },
 ]);

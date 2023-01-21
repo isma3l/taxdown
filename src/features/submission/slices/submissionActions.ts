@@ -6,8 +6,7 @@ export const fetchForm = createAsyncThunk<InputField[], string>(
   'form/fetch',
   async (taxId, { rejectWithValue }) => {
     try {
-      const form = await getSubmissionForm(taxId);
-      return form;
+      return await getSubmissionForm(taxId);
     } catch (error) {
       console.error('An error has occurred with the services');
       return rejectWithValue(true);
@@ -15,14 +14,17 @@ export const fetchForm = createAsyncThunk<InputField[], string>(
   },
 );
 
-export const createSubmission = createAsyncThunk<Submission, Submission>(
-  'submission/post2',
-  async (submission, { rejectWithValue }) => {
-    try {
-      return await addSubmission(submission);
-    } catch (error) {
-      console.error('An error has occurred with the services');
-      return rejectWithValue(true);
-    }
-  },
-);
+export type SubmissionCreationParams = { taxId: string; submission: Submission };
+
+export const createSubmission = createAsyncThunk<
+  SubmissionCreationParams,
+  SubmissionCreationParams
+>('submission/post', async ({ taxId, submission }, { rejectWithValue }) => {
+  try {
+    const newSubmission = await addSubmission(taxId, submission);
+    return { taxId, submission: newSubmission };
+  } catch (error) {
+    console.error('An error has occurred with the services');
+    return rejectWithValue(true);
+  }
+});

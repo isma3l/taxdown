@@ -3,7 +3,8 @@ import { Box, Button, VStack, Spinner } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
-import { useAppDispatch, useTypedSelector } from '@/hooks';
+import { useAppDispatch, useTypedSelector } from '@hooks';
+import { Submission as ISubmission } from '@model';
 import {
   selectInputFields,
   fetchForm,
@@ -32,9 +33,9 @@ const Submission = ({ route }: SubmissionProps) => {
     dispatch(fetchForm(taxId));
   }, [dispatch, taxId]);
 
-  const onSubmit = (newSubmission: any) => {
-    dispatch(createSubmission({ ...newSubmission, taxId }));
-    console.log(newSubmission);
+  const onSubmit = (submission: ISubmission) => {
+    dispatch(createSubmission({ submission, taxId }));
+    console.log(submission);
   };
 
   return (

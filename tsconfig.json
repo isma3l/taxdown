@@ -16,7 +16,7 @@
       "@features": ["./features"],
       "@navigation": ["./navigation"],
       "@navigation/*": ["./navigation/*"],
-      "@services": ["./dataSource/api/services"]
+      "@components": ["./components"]
     },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
   },
   "exclude": [

@@ -2,13 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchForm, createSubmission } from './submissionActions';
 import { RootState } from '@store';
 import { Submission, InputField } from '@model';
+import { type SubmissionCreationParams } from './submissionActions';
 
 type SubmissionState = {
   loadingFetch: boolean;
   loadingCreate: boolean;
   error: boolean;
   inputFields: InputField[];
-  submissions: Submission[];
+  submissions: Record<string, Submission[]>;
 };
 
 const initialState: SubmissionState = {
@@ -16,7 +17,7 @@ const initialState: SubmissionState = {
   loadingCreate: false,
   inputFields: [],
   error: false,
-  submissions: [],
+  submissions: {},
 };
 
 const submissionSlice = createSlice({
@@ -41,11 +42,18 @@ const submissionSlice = createSlice({
       state.loadingCreate = false;
       state.error = false;
     });
-    builder.addCase(createSubmission.fulfilled, (state, action: PayloadAction<Submission>) => {
-      state.submissions.push(action.payload);
-      state.error = false;
-      state.loadingCreate = false;
-    });
+    builder.addCase(
+      createSubmission.fulfilled,
+      (state, action: PayloadAction<SubmissionCreationParams>) => {
+        const { taxId, submission } = action.payload;
+
+        state.submissions[taxId] = state.submissions[taxId]
+          ? [...state.submissions[taxId], submission]
+          : [submission];
+        state.error = false;
+        state.loadingCreate = false;
+      },
+    );
     builder.addCase(createSubmission.rejected, state => {
       state.loadingCreate = false;
       state.error = true;

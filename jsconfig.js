@@ -10,6 +10,6 @@ System.config({
     '@features': './src/features',
     '@navigation': './src/navigation',
     '@navigation/*': './src/navigation/*',
-    "@services": ["./src/dataSource/api/services"]
+    "@components": ["./src/components"]
   },
 });

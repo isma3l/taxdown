@@ -4,6 +4,8 @@ import { Box, Heading, HStack, Button } from 'native-base';
 import { useAppDispatch, useTypedSelector } from '@/hooks';
 import { fetchTaxes, selectActiveTaxes, selectInactiveTaxes } from './slices';
 import { TaxList, Header } from './components';
+import { TAX_SUBMISSIONS } from '@navigation/Routes';
+import { navigate } from '@navigation/RootNavigation';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -31,7 +33,14 @@ const Taxes = () => {
         </Tab.Screen>
       </Tab.Navigator>
       <HStack width="100%" justifyContent="center" background="blue.300" padding="2">
-        <Button variant="ghost" size="md" height="8" padding="1" alignSelf="center" width="70%">
+        <Button
+          variant="ghost"
+          size="md"
+          height="8"
+          padding="1"
+          alignSelf="center"
+          width="70%"
+          onPress={() => navigate(TAX_SUBMISSIONS)}>
           Ver todos mis impuestos fiscales
         </Button>
       </HStack>

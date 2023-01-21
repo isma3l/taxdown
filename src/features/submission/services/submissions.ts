@@ -36,7 +36,7 @@ export const getSubmissionForm = async (taxId: string): Promise<InputField[]> =>
   return inputFields;
 };
 
-export const addSubmission = async (submission: Submission): Promise<Submission> => {
-  const URL = `tax/${submission.taxId}/form`;
+export const addSubmission = async (taxId: string, submission: Submission): Promise<Submission> => {
+  const URL = `tax/${taxId}/form`;
   return await post<Submission, Submission>(URL, submission);
 };
