@@ -6,7 +6,15 @@ import { IBaseField } from '../Field';
 
 export type TextFieldProps = ITextField & IBaseField;
 
-const TextField = ({ id, label, placeholder, errors, maxLength, control }: TextFieldProps) => {
+const TextField = ({
+  id,
+  label,
+  placeholder,
+  errors,
+  maxLength,
+  control,
+  disabled,
+}: TextFieldProps) => {
   const getErrorMessage = (type: string): string => {
     const errorMessage =
       type === 'required' ? 'Este campo es requerido' : `Máximo ${maxLength} caracteres`;
@@ -22,7 +30,12 @@ const TextField = ({ id, label, placeholder, errors, maxLength, control }: TextF
       render={({ field: { onChange, value } }) => (
         <FormControl isRequired isInvalid={id in errors} marginBottom="2">
           <FormControl.Label _text={{ bold: true }}>{label}</FormControl.Label>
-          <Input placeholder={placeholder} value={value} onChangeText={onChange} />
+          <Input
+            placeholder={placeholder}
+            value={value}
+            onChangeText={onChange}
+            isDisabled={disabled}
+          />
           {id in errors ? (
             <FormControl.ErrorMessage>{getErrorMessage(errors[id].type)}</FormControl.ErrorMessage>
           ) : (

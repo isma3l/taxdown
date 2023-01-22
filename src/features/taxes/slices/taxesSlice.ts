@@ -11,7 +11,26 @@ type TaxesState = {
 
 const initialState: TaxesState = {
   loading: false,
-  taxes: [],
+  taxes: [
+    {
+      id: '1',
+      active: true,
+      name: 'Season 2020',
+      year: '2020',
+    },
+    {
+      id: '2',
+      active: true,
+      name: 'Season 2022',
+      year: '2022',
+    },
+    {
+      id: '3',
+      active: false,
+      name: 'Season 2023',
+      year: '2023',
+    },
+  ],
   error: false,
 };
 

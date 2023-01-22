@@ -1,37 +1,51 @@
-import React from 'react';
-import { Text, VStack } from 'native-base';
+import React, { useState } from 'react';
+import { VStack, Button } from 'native-base';
+import { useAppDispatch } from '@hooks';
+import { setFilter } from '../../slices';
+import type { FilterKeys, FilterData } from '../../types';
 import InputFilter from '../InputFilter';
 
-export type FilterData = {
-  id: string;
-  label: string;
-  width: string;
-};
+export type FilterValues = Record<FilterKeys, string>;
 
 type FiltersProps = {
   data: FilterData[];
-  control: any;
 };
 
-const Filters = ({ data, control }: FiltersProps) => {
+const filterInitiaValues: FilterValues = {
+  year: '',
+  name: '',
+  surname: '',
+  age: '',
+};
+
+const Filters = ({ data }: FiltersProps) => {
+  const [filterValues, setFilterValues] = useState<FilterValues>(filterInitiaValues);
+  const dispatch = useAppDispatch();
+
+  const onHandleChange = (key: string, value: string) => {
+    setFilterValues(prevState => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
+  const onFilter = () => {
+    dispatch(setFilter(filterValues));
+  };
+
   return (
-    <VStack
-      width="100%"
-      borderWidth={1}
-      rounded="lg"
-      borderColor="coolGray.200"
-      padding={2}
-      background="white">
-      <Text bold>Filters</Text>
-      {data.map(({ id, label, width }, index) => (
+    <VStack width="100%" borderWidth={1} rounded="lg" borderColor="coolGray.200" padding={2} background="white">
+      {data.map((filter, index) => (
         <InputFilter
-          key={`filter-${index}`}
-          id={id}
-          label={label}
-          control={control}
-          width={width}
+          key={`inputFilter-${index}`}
+          filterData={filter}
+          value={filterValues[filter.id]}
+          handleChange={onHandleChange}
         />
       ))}
+      <Button size="sm" width="70%" alignSelf="center" marginTop="2" onPress={onFilter}>
+        Apply filter
+      </Button>
     </VStack>
   );
 };

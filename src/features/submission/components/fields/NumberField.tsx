@@ -6,7 +6,7 @@ import { IBaseField } from '../Field';
 
 export type NumberFieldProps = INumberField & IBaseField;
 
-const NumberField = ({ id, label, placeholder, control, errors }: NumberFieldProps) => {
+const NumberField = ({ id, label, placeholder, control, errors, disabled }: NumberFieldProps) => {
   const getErrorMessage = (type: string): string => {
     const errorMessage =
       type === 'required' ? 'Este campo es requerido' : 'Solo se permiten números';
@@ -28,6 +28,7 @@ const NumberField = ({ id, label, placeholder, control, errors }: NumberFieldPro
             onChangeText={onChange}
             keyboardType="numeric"
             returnKeyType="done"
+            isDisabled={disabled}
           />
           {id in errors ? (
             <FormControl.ErrorMessage>{getErrorMessage(errors[id].type)}</FormControl.ErrorMessage>

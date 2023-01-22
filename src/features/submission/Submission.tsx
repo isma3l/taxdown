@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Box, Button, VStack, Spinner } from 'native-base';
+import { Box, Button, VStack, Spinner, Text } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
 import { useAppDispatch, useTypedSelector } from '@hooks';
 import { Submission as ISubmission } from '@model';
+import { Loading } from '@components';
 import {
   selectInputFields,
   fetchForm,
@@ -35,8 +36,11 @@ const Submission = ({ route }: SubmissionProps) => {
 
   const onSubmit = (submission: ISubmission) => {
     dispatch(createSubmission({ submission, taxId }));
-    console.log(submission);
   };
+
+  const fields = inputsFields.map((inputField, index) => (
+    <Field key={index} {...inputField} control={control} errors={errors} disabled={loadingCreate} />
+  ));
 
   return (
     <VStack safeArea flex="1">
@@ -50,22 +54,19 @@ const Submission = ({ route }: SubmissionProps) => {
         background="white"
         width="90%">
         {loadingFetch ? (
-          <Box justifyContent="center" alignItems="center" flex="1">
-            <Spinner size="lg" />
-          </Box>
+          <Loading />
         ) : (
           <>
             <VStack width="100%" paddingX="8" paddingTop="4">
-              {inputsFields.map((inputField, index) => (
-                <Field key={index} {...inputField} control={control} errors={errors} />
-              ))}
+              {fields}
             </VStack>
             <Button
               mt="2"
               colorScheme="indigo"
               marginBottom="8"
               marginX="16"
-              isDisabled={loadingCreate}
+              isLoading={loadingCreate}
+              isLoadingText="Submitting"
               onPress={handleSubmit(onSubmit)}>
               Create submission
             </Button>

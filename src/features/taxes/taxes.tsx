@@ -15,7 +15,7 @@ const Taxes = () => {
   const inactiveTaxes = useTypedSelector(selectInactiveTaxes);
 
   useEffect(() => {
-    dispatch(fetchTaxes());
+    //dispatch(fetchTaxes());
   }, [dispatch]);
 
   return (
@@ -25,12 +25,8 @@ const Taxes = () => {
         Mis impuestos
       </Heading>
       <Tab.Navigator>
-        <Tab.Screen name="Activos">
-          {props => <TaxList taxes={activeTaxes} {...props} />}
-        </Tab.Screen>
-        <Tab.Screen name="Inactivos">
-          {props => <TaxList taxes={inactiveTaxes} {...props} />}
-        </Tab.Screen>
+        <Tab.Screen name="Activos">{props => <TaxList taxes={activeTaxes} {...props} />}</Tab.Screen>
+        <Tab.Screen name="Inactivos">{props => <TaxList taxes={inactiveTaxes} {...props} />}</Tab.Screen>
       </Tab.Navigator>
       <HStack width="100%" justifyContent="center" background="blue.300" padding="2">
         <Button

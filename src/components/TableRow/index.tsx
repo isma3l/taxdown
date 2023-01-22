@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack, Text, ScrollView } from 'native-base';
+import { HStack, Text } from 'native-base';
 
 import { type ColumnsProps } from '../Table';
 
@@ -28,18 +28,15 @@ const TableRow = <T extends Record<string, string | number>, K extends keyof T>(
   };
 
   return (
-    <ScrollView>
+    <>
       {data.map((item, index) => {
         return (
-          <HStack
-            key={`row-${index}`}
-            paddingX={1}
-            background={index % 2 !== 0 ? 'green.50' : 'white'}>
+          <HStack key={`row-${index}`} paddingX={1}>
             {getRow(item)}
           </HStack>
         );
       })}
-    </ScrollView>
+    </>
   );
 };
 

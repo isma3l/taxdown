@@ -11,6 +11,7 @@ import {
 export interface IBaseField {
   control: any;
   errors: any;
+  disabled: boolean;
 }
 
 export type IField = NumberFieldProps | PictureFieldProps | TextFieldProps;

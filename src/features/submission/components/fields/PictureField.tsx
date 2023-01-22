@@ -7,7 +7,7 @@ import { IBaseField } from '../Field';
 
 export type PictureFieldProps = IPictureField & IBaseField;
 
-const PictureField = ({ id, label, errors, control }: PictureFieldProps) => {
+const PictureField = ({ id, label, errors, control, disabled }: PictureFieldProps) => {
   return (
     <Controller
       key={id}
@@ -17,7 +17,11 @@ const PictureField = ({ id, label, errors, control }: PictureFieldProps) => {
       render={({ field: { onChange, value } }) => (
         <FormControl isRequired isInvalid={id in errors} marginBottom="2">
           <FormControl.Label _text={{ bold: true }}>{label}</FormControl.Label>
-          <Button mt="2" colorScheme="indigo" onPress={() => launchNativeCamera(onChange)}>
+          <Button
+            mt="2"
+            colorScheme="indigo"
+            isDisabled={disabled}
+            onPress={() => launchNativeCamera(onChange)}>
             Capturar imagen
           </Button>
           <HStack

@@ -1,37 +1,27 @@
 import React from 'react';
-import { HStack } from 'native-base';
-import { FormControl, Input } from 'native-base';
-import { Controller } from 'react-hook-form';
+import { HStack, Text, Input } from 'native-base';
+import type { FilterData } from '../../types';
 
 type InputFilterProps = {
-  id: string;
-  label: string;
-  control: any;
-  width?: string;
+  filterData: FilterData;
+  value: string;
+  handleChange: (id: string, value: string) => void;
 };
 
-const InputFilter = ({ id, label, control, width }: InputFilterProps) => {
+const InputFilter = ({ filterData, value, handleChange }: InputFilterProps) => {
+  const { id, label, width } = filterData;
   return (
-    <Controller
-      key={id}
-      name={id}
-      control={control}
-      render={({ field: { onChange, value } }) => (
-        <FormControl>
-          <HStack justifyContent="space-between">
-            <FormControl.Label>{label}</FormControl.Label>
-            <Input
-              value={value}
-              onChangeText={onChange}
-              returnKeyType="done"
-              height={7}
-              size="xs"
-              width={width}
-            />
-          </HStack>
-        </FormControl>
-      )}
-    />
+    <HStack justifyContent="space-between">
+      <Text>{label}</Text>
+      <Input
+        returnKeyType="done"
+        size="xs"
+        width={width}
+        height="7"
+        value={value}
+        onChangeText={newValue => handleChange(id, newValue)}
+      />
+    </HStack>
   );
 };
 
