@@ -11,6 +11,7 @@ import { useAppDispatch } from '@hooks';
 import { signIn, selectLoading } from './authSlice';
 import { UserCredentials } from './types';
 import styles from './styles';
+import { NativeShareButtonView } from '@/nativeComponents';
 
 //type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -43,11 +44,7 @@ const Login = (/* { navigation }: LoginProps */) => {
         <Image source={images.logo} style={styles.logo} />
         <FormControl isRequired>
           <FormControl.Label>Email</FormControl.Label>
-          <Input
-            onChangeText={value => setFieldValue('email', value)}
-            value={values.email}
-            isDisabled={loading}
-          />
+          <Input onChangeText={value => setFieldValue('email', value)} value={values.email} isDisabled={loading} />
         </FormControl>
         <FormControl isRequired>
           <FormControl.Label>Password</FormControl.Label>
@@ -67,6 +64,7 @@ const Login = (/* { navigation }: LoginProps */) => {
           onPress={handleSubmit}>
           Sign in
         </Button>
+        <NativeShareButtonView style={{ with: 100, height: 100 }} />
       </VStack>
     </Box>
   );
