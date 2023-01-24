@@ -1,1 +1,0 @@
-export { NativeShareButtonView } from './ShareButtonNative';
