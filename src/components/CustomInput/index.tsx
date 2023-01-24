@@ -26,7 +26,7 @@ const CustomInput = ({
   disabled,
   errorMessages,
   rules,
-  helperText,
+  helperText = '',
   keyboardType = 'default',
   returnKeyType = 'default',
 }: CustomInputProps) => {

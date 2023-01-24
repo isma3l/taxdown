@@ -37,34 +37,25 @@ const Login = () => {
     <Box safeArea alignItems="center">
       <VStack width="80%" marginTop="20">
         <Image source={images.logo} style={styles.logo} />
-        <Box height="190" justifyContent="space-between">
-          <CustomInput
-            id={'email'}
-            label={'Email'}
-            errors={errors}
-            control={control}
-            disabled={loading}
-            errorMessages={errorMessageEmail}
-            rules={{ required: true, pattern: userEmailRegex }}
-          />
-          <CustomInput
-            id={'password'}
-            label={'Password'}
-            errors={errors}
-            control={control}
-            disabled={loading}
-            errorMessages={errorMessagePassword}
-            rules={{ required: true }}
-          />
-        </Box>
-
-        <Button
-          mt="2"
-          colorScheme="indigo"
-          marginTop={8}
+        <CustomInput
+          id={'email'}
+          label={'Email'}
+          errors={errors}
+          control={control}
           disabled={loading}
-          isLoading={loading}
-          onPress={handleSubmit(onSubmit)}>
+          errorMessages={errorMessageEmail}
+          rules={{ required: true, pattern: userEmailRegex }}
+        />
+        <CustomInput
+          id={'password'}
+          label={'Password'}
+          errors={errors}
+          control={control}
+          disabled={loading}
+          errorMessages={errorMessagePassword}
+          rules={{ required: true }}
+        />
+        <Button mt="2" marginTop={8} disabled={loading} isLoading={loading} onPress={handleSubmit(onSubmit)}>
           Sign in
         </Button>
       </VStack>

@@ -17,8 +17,12 @@ const PictureField = ({ id, label, errors, control, disabled }: PictureFieldProp
       render={({ field: { onChange, value } }) => (
         <FormControl isRequired isInvalid={id in errors} marginBottom="2">
           <FormControl.Label _text={{ bold: true }}>{label}</FormControl.Label>
-          <Button mt="2" colorScheme="indigo" isDisabled={disabled} onPress={() => launchNativeCamera(onChange)}>
-            Capturar imagen
+          <Button
+            marginTop="2"
+            colorScheme="secondary"
+            isDisabled={disabled}
+            onPress={() => launchNativeCamera(onChange)}>
+            Take a picture
           </Button>
           <HStack marginTop={2} justifyItems="center" alignItems="center" justifyContent="space-between">
             <Text>Path: </Text>

@@ -1,3 +1,3 @@
 export { default as InputFilter } from './InputFilter';
-export { default as Filters, type FilterData, type FilterValues } from './Filters';
-export { default as Header } from './Header';
+export { default as Filters, type FilterValues } from './Filters';
+export { default as TaxTable } from './TaxTable';

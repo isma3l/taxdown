@@ -9,14 +9,14 @@ export type RootStackParamList = {
   Submission: { taxId: string };
   TaxSubmissions: undefined;
 };
-// screenOptions={{ headerShown: false }}
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const StackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName={LOGIN}>
-      <Stack.Screen name={LOGIN} component={Login} />
-      <Stack.Screen name={TAXES} component={Taxes} />
+      <Stack.Screen name={LOGIN} component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name={TAXES} component={Taxes} options={{ headerShown: false }} />
       <Stack.Screen name={SUBMISSION} component={Submission} />
       <Stack.Screen name={TAX_SUBMISSIONS} component={TaxSubmissions} />
     </Stack.Navigator>

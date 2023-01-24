@@ -10,6 +10,5 @@ export const signIn = createAsyncThunk<Credentials, Credentials>('auth/signIn', 
     }, 200);
   });
   navigate(TAXES);
-  console.log('navega a sahcoen');
   return params;
 });

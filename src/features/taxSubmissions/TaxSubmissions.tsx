@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, ScrollView } from 'native-base';
-import { Filters, Header } from './components';
+import { Filters, TaxTable } from './components';
 import { useTypedSelector } from '@hooks';
 import { selectFilteredTaxSubmissions } from './slices';
-import type { FilterData } from './components';
+import type { FilterData } from './types';
 
 const filters: FilterData[] = [
   {
@@ -36,7 +36,7 @@ const TaxSubmissions = () => {
       <Filters data={filters} />
       <ScrollView flex="1" width="100%" margin={2} paddingBottom={3} background="white">
         {filteredTaxSubmissions.map((taxSubmission, index) => (
-          <Header key={`header-${index}`} taxSubmission={taxSubmission} />
+          <TaxTable key={`header-${index}`} taxSubmission={taxSubmission} />
         ))}
       </ScrollView>
     </Box>

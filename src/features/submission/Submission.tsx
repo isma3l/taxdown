@@ -56,7 +56,6 @@ const Submission = ({ route }: SubmissionProps) => {
             </VStack>
             <Button
               mt="2"
-              colorScheme="indigo"
               marginBottom="8"
               marginX="16"
               isLoading={loadingCreate}

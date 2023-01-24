@@ -4,7 +4,7 @@ import { Submission, InputField } from '@/model';
 export const getSubmissionForm = async (taxId: string): Promise<InputField[]> => {
   const URL = `taxes/${taxId}/form`;
 
-  /*  const obj: InputField[] = [
+  const obj: InputField[] = [
     {
       id: 'name',
       label: 'Name',
@@ -30,11 +30,10 @@ export const getSubmissionForm = async (taxId: string): Promise<InputField[]> =>
       label: 'Picture',
       type: 'picture',
     },
-  ]; */
-  console.log('url: ', URL);
-  const { inputFields } = await get<any>(URL);
-  console.log(inputFields);
-  return inputFields;
+  ];
+  return obj;
+  //const { inputFields } = await get<any>(URL);
+  //return inputFields;
 };
 
 export const addSubmission = async (taxId: string, submission: Submission): Promise<Submission> => {

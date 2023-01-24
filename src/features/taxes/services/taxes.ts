@@ -4,7 +4,7 @@ import { Tax } from '@model';
 export const URL_TAXES = 'taxes';
 
 export const getTaxes = async (): Promise<Tax[]> => {
-  /* const taxes = [
+  const taxes = [
     {
       id: '1',
       active: true,
@@ -17,7 +17,7 @@ export const getTaxes = async (): Promise<Tax[]> => {
       name: 'Tax 2',
       year: '2021',
     },
-  ]; */
-  const { taxes } = await get<{ taxes: Tax[] }>(URL_TAXES);
+  ];
+  //const { taxes } = await get<{ taxes: Tax[] }>(URL_TAXES);
   return taxes;
 };

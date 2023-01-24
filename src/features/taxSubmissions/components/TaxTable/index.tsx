@@ -23,11 +23,11 @@ const columns: ColumnsProps<Submission, keyof Submission>[] = [
   },
 ];
 
-type HeaderProps = {
+type TaxTableProps = {
   taxSubmission: ITaxSubmission;
 };
 
-const Header = ({ taxSubmission }: HeaderProps) => {
+const TaxTable = ({ taxSubmission }: TaxTableProps) => {
   const { name, year, active, submissions } = taxSubmission;
 
   return (
@@ -48,4 +48,4 @@ const Header = ({ taxSubmission }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default TaxTable;

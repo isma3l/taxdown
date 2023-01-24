@@ -8,11 +8,11 @@ export type TextFieldProps = ITextField & IBaseField;
 const TextField = ({ id, label, placeholder, errors, maxLength, control, disabled }: TextFieldProps) => {
   const errorMessages = {
     required: 'This field is required',
-    maxLength: `Máximo ${maxLength} caracteres`,
+    maxLength: `Maximum ${maxLength} characters`,
   };
-  //console.log('id: ', id, 'label: ', label, 'maaxLengh: ', maxLength);
+
   const rules = { required: true, maxLength };
-  console.log(`errors de  ${id}`, errors);
+
   return (
     <CustomInput
       id={id}
@@ -23,7 +23,7 @@ const TextField = ({ id, label, placeholder, errors, maxLength, control, disable
       disabled={disabled}
       errorMessages={errorMessages}
       rules={rules}
-      helperText={`Máximo ${maxLength} caracteres`}
+      helperText={`Maximum ${maxLength} characters`}
     />
   );
 };
