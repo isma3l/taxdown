@@ -31,8 +31,9 @@ export const getSubmissionForm = async (taxId: string): Promise<InputField[]> =>
       type: 'picture',
     },
   ]; */
-
-  const { inputFields } = await get<{ inputFields: InputField[] }>(URL);
+  console.log('url: ', URL);
+  const { inputFields } = await get<any>(URL);
+  console.log(inputFields);
   return inputFields;
 };
 

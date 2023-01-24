@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react';
-import { Box, Button, VStack, Spinner, Text } from 'native-base';
+import { Box, Button, VStack } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
 import { useAppDispatch, useTypedSelector } from '@hooks';
 import { Submission as ISubmission } from '@model';
 import { Loading } from '@components';
-import {
-  selectInputFields,
-  fetchForm,
-  createSubmission,
-  selectLoadingFetch,
-  selectLoadingCreate,
-} from './slices';
+import { selectInputFields, fetchForm, createSubmission, selectLoadingFetch, selectLoadingCreate } from './slices';
 import { Field } from './components';
 
 type SubmissionProps = NativeStackScreenProps<RootStackParamList, 'Submission'>;

@@ -1,48 +1,29 @@
 import React from 'react';
-import { FormControl, Input } from 'native-base';
-import { Controller } from 'react-hook-form';
 import { ITextField } from '@model';
+import { CustomInput } from '@components';
 import { IBaseField } from '../Field';
 
 export type TextFieldProps = ITextField & IBaseField;
 
-const TextField = ({
-  id,
-  label,
-  placeholder,
-  errors,
-  maxLength,
-  control,
-  disabled,
-}: TextFieldProps) => {
-  const getErrorMessage = (type: string): string => {
-    const errorMessage =
-      type === 'required' ? 'Este campo es requerido' : `Máximo ${maxLength} caracteres`;
-    return errorMessage;
+const TextField = ({ id, label, placeholder, errors, maxLength, control, disabled }: TextFieldProps) => {
+  const errorMessages = {
+    required: 'This field is required',
+    maxLength: `Máximo ${maxLength} caracteres`,
   };
-
+  //console.log('id: ', id, 'label: ', label, 'maaxLengh: ', maxLength);
+  const rules = { required: true, maxLength };
+  console.log(`errors de  ${id}`, errors);
   return (
-    <Controller
-      key={id}
-      name={id}
+    <CustomInput
+      id={id}
+      label={label}
+      placeholder={placeholder}
+      errors={errors}
       control={control}
-      rules={{ required: true, maxLength }}
-      render={({ field: { onChange, value } }) => (
-        <FormControl isRequired isInvalid={id in errors} marginBottom="2">
-          <FormControl.Label _text={{ bold: true }}>{label}</FormControl.Label>
-          <Input
-            placeholder={placeholder}
-            value={value}
-            onChangeText={onChange}
-            isDisabled={disabled}
-          />
-          {id in errors ? (
-            <FormControl.ErrorMessage>{getErrorMessage(errors[id].type)}</FormControl.ErrorMessage>
-          ) : (
-            <FormControl.HelperText>{`Máximo ${maxLength} caracteres`}</FormControl.HelperText>
-          )}
-        </FormControl>
-      )}
+      disabled={disabled}
+      errorMessages={errorMessages}
+      rules={rules}
+      helperText={`Máximo ${maxLength} caracteres`}
     />
   );
 };

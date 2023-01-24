@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  NumberField,
-  NumberFieldProps,
-  PictureField,
-  PictureFieldProps,
-  TextField,
-  TextFieldProps,
-} from './fields';
+import { NumberField, NumberFieldProps, PictureField, PictureFieldProps, TextField, TextFieldProps } from './fields';
 
 export interface IBaseField {
   control: any;

@@ -1,70 +1,72 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Image } from 'react-native';
-//import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-import { useFormik } from 'formik';
-import { Box, FormControl, Input, VStack, Button } from 'native-base';
-//import { RootStackParamList } from '../../navigation/StackNavigator';
+import { Box, Button, VStack } from 'native-base';
+import { useForm } from 'react-hook-form';
+import { userEmailRegex } from '@/utils';
 import images from '@images';
 import { useAppDispatch } from '@hooks';
-import { signIn, selectLoading } from './authSlice';
-import { UserCredentials } from './types';
+import { signIn, selectLoading } from './slices';
+import type { Credentials } from './types';
 import styles from './styles';
-import { NativeShareButtonView } from '@/nativeComponents';
+import { CustomInput } from '@components';
 
-//type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
-
-const Login = (/* { navigation }: LoginProps */) => {
+const Login = () => {
   const dispatch = useAppDispatch();
   const loading = useSelector(selectLoading);
-  const { handleSubmit, errors, isValid, values, setFieldValue } = useFormik<UserCredentials>({
-    initialValues: { email: '', password: '' },
-    validate: ({ email, password }) => {
-      console.log('email: ', email, ' password: ', password);
-      let errores = {};
-      if (email.length == 0 || email.length > 4) {
-        errores.email = 'Este campo no debe exceder 4 caraceters';
-      }
-      if (password.length > 5) {
-        errores.password = 'Este campo no debe exceder 4 caraceters';
-      }
-      return errores;
-    },
-    onSubmit: credentials => {
-      dispatch(signIn(credentials));
-    },
-  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Credentials>();
 
-  const disabledButton = !isValid;
+  const onSubmit = (credentials: Credentials) => {
+    dispatch(signIn(credentials));
+  };
+
+  const errorMessageEmail = {
+    required: 'This field is required',
+    pattern: 'The email entered is not valid',
+  };
+
+  const errorMessagePassword = {
+    required: 'This field is required',
+  };
 
   return (
     <Box safeArea alignItems="center">
-      <VStack space={4} width="80%" marginTop="20">
+      <VStack width="80%" marginTop="20">
         <Image source={images.logo} style={styles.logo} />
-        <FormControl isRequired>
-          <FormControl.Label>Email</FormControl.Label>
-          <Input onChangeText={value => setFieldValue('email', value)} value={values.email} isDisabled={loading} />
-        </FormControl>
-        <FormControl isRequired>
-          <FormControl.Label>Password</FormControl.Label>
-          <Input
-            onChangeText={value => setFieldValue('password', value)}
-            value={values.password}
-            type="password"
-            isDisabled={loading}
+        <Box height="190" justifyContent="space-between">
+          <CustomInput
+            id={'email'}
+            label={'Email'}
+            errors={errors}
+            control={control}
+            disabled={loading}
+            errorMessages={errorMessageEmail}
+            rules={{ required: true, pattern: userEmailRegex }}
           />
-        </FormControl>
+          <CustomInput
+            id={'password'}
+            label={'Password'}
+            errors={errors}
+            control={control}
+            disabled={loading}
+            errorMessages={errorMessagePassword}
+            rules={{ required: true }}
+          />
+        </Box>
+
         <Button
           mt="2"
           colorScheme="indigo"
           marginTop={8}
-          isDisabled={disabledButton}
+          disabled={loading}
           isLoading={loading}
-          onPress={handleSubmit}>
+          onPress={handleSubmit(onSubmit)}>
           Sign in
         </Button>
-        <NativeShareButtonView style={{ with: 100, height: 100 }} />
       </VStack>
     </Box>
   );

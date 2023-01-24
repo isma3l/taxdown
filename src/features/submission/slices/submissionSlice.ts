@@ -56,18 +56,13 @@ const submissionSlice = createSlice({
       state.loadingCreate = true;
       state.error = false;
     });
-    builder.addCase(
-      createSubmission.fulfilled,
-      (state, action: PayloadAction<SubmissionCreationParams>) => {
-        const { taxId, submission } = action.payload;
+    builder.addCase(createSubmission.fulfilled, (state, action: PayloadAction<SubmissionCreationParams>) => {
+      const { taxId, submission } = action.payload;
 
-        state.submissions[taxId] = state.submissions[taxId]
-          ? [...state.submissions[taxId], submission]
-          : [submission];
-        state.error = false;
-        state.loadingCreate = false;
-      },
-    );
+      state.submissions[taxId] = state.submissions[taxId] ? [...state.submissions[taxId], submission] : [submission];
+      state.error = false;
+      state.loadingCreate = false;
+    });
     builder.addCase(createSubmission.rejected, state => {
       state.loadingCreate = false;
       state.error = true;
