@@ -14,10 +14,7 @@ export type TableProps<T, K extends keyof T> = {
   columns: ColumnsProps<T, K>[];
 };
 
-const Table = <T extends Record<string, string | number>, K extends keyof T>({
-  data,
-  columns,
-}: TableProps<T, K>) => {
+const Table = <T extends Record<string, string | number>, K extends keyof T>({ data, columns }: TableProps<T, K>) => {
   return (
     <VStack>
       <TableHeader columns={columns} />

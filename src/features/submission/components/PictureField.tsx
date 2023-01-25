@@ -3,7 +3,7 @@ import { HStack, Text, Button, FormControl, Input } from 'native-base';
 import { Controller } from 'react-hook-form';
 import { IPictureField } from '@model';
 import { launchNativeCamera, executeWithPermission } from '@/utils';
-import { IBaseField } from '../Field';
+import { IBaseField } from './Field';
 
 export type PictureFieldProps = IPictureField & IBaseField;
 

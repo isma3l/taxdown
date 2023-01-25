@@ -1,6 +1,6 @@
 import React from 'react';
 import { INumberField } from '@model';
-import { IBaseField } from '../Field';
+import { IBaseField } from './Field';
 import { CustomInput } from '@components';
 import { ageRangeRegex } from '@/utils';
 

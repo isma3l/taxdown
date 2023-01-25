@@ -1,7 +1,7 @@
 import React from 'react';
 import { ITextField } from '@model';
 import { CustomInput } from '@components';
-import { IBaseField } from '../Field';
+import { IBaseField } from './Field';
 
 export type TextFieldProps = ITextField & IBaseField;
 
