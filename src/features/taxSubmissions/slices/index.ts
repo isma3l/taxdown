@@ -31,10 +31,13 @@ const FilterSlice = createSlice({
       state.values.surname = surname;
       state.values.age = age;
     },
+    resetFilters: state => {
+      state.values = { ...initialState.values };
+    },
   },
 });
 
-export const { setFilter } = FilterSlice.actions;
+export const { setFilter, resetFilters } = FilterSlice.actions;
 
 const selectFilterValues = (state: RootState) => state.filterReducer;
 

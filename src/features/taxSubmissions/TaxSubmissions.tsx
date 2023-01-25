@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, ScrollView } from 'native-base';
 import { Filters, TaxTable } from './components';
-import { useTypedSelector } from '@hooks';
-import { selectFilteredTaxSubmissions } from './slices';
+import { useTypedSelector, useAppDispatch } from '@hooks';
+import { selectFilteredTaxSubmissions, resetFilters } from './slices';
 import type { FilterData } from './types';
 
 const filters: FilterData[] = [
@@ -30,6 +30,13 @@ const filters: FilterData[] = [
 
 const TaxSubmissions = () => {
   const filteredTaxSubmissions = useTypedSelector(selectFilteredTaxSubmissions);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetFilters());
+    };
+  }, [dispatch]);
 
   return (
     <Box safeArea alignItems="center" flex="1" paddingX={3} paddingTop="2">
