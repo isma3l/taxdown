@@ -1,13 +1,17 @@
 import React from 'react';
 import { HStack, Text, Button, FormControl, Input } from 'native-base';
-import { launchNativeCamera } from '@/utils';
 import { Controller } from 'react-hook-form';
 import { IPictureField } from '@model';
+import { launchNativeCamera, executeWithPermission } from '@/utils';
 import { IBaseField } from '../Field';
 
 export type PictureFieldProps = IPictureField & IBaseField;
 
 const PictureField = ({ id, label, errors, control, disabled }: PictureFieldProps) => {
+  const takePhoto = (onChange: (...event: any[]) => void) => {
+    executeWithPermission(() => launchNativeCamera(onChange));
+  };
+
   return (
     <Controller
       key={id}
@@ -17,11 +21,7 @@ const PictureField = ({ id, label, errors, control, disabled }: PictureFieldProp
       render={({ field: { onChange, value } }) => (
         <FormControl isRequired isInvalid={id in errors} marginBottom="2">
           <FormControl.Label _text={{ bold: true }}>{label}</FormControl.Label>
-          <Button
-            marginTop="2"
-            colorScheme="secondary"
-            isDisabled={disabled}
-            onPress={() => launchNativeCamera(onChange)}>
+          <Button marginTop="2" colorScheme="secondary" isDisabled={disabled} onPress={() => takePhoto(onChange)}>
             Take a picture
           </Button>
           <HStack marginTop={2} justifyItems="center" alignItems="center" justifyContent="space-between">
