@@ -11,6 +11,7 @@
     "fake-api": "json-server --watch data/db.json --routes data/routes.json --port 8000"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-navigation/bottom-tabs": "^6.5.3",
     "@react-navigation/material-top-tabs": "^6.5.2",
     "@react-navigation/native": "^6.1.2",

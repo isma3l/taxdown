@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Credentials } from '../types';
 import { RootState } from '@/store';
+import { User } from '@model';
 import { signIn } from './authActions';
 
 type AuthState = {
@@ -15,15 +15,20 @@ const initialState: AuthState = {
   isLoggedIn: false,
 };
 
-const AuthSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    restoreSession: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedIn = action.payload;
+    },
+    logout: () => {},
+  },
   extraReducers: builder => {
     builder.addCase(signIn.pending, state => {
       state.loading = true;
     });
-    builder.addCase(signIn.fulfilled, (state, action: PayloadAction<Credentials>) => {
+    builder.addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
       state.loading = false;
       state.isLoggedIn = true;
       state.email = action.payload.email;
@@ -31,6 +36,9 @@ const AuthSlice = createSlice({
   },
 });
 
+export const { restoreSession, logout } = authSlice.actions;
 export const selectLoading = (state: RootState) => state.auth.loading;
+export const selectEmail = (state: RootState) => state.auth.email;
+export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 
-export default AuthSlice.reducer;
+export default authSlice.reducer;

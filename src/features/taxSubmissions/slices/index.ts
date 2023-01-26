@@ -20,7 +20,7 @@ const initialState: FilterState = {
   },
 };
 
-const FilterSlice = createSlice({
+const filterSlice = createSlice({
   name: 'FilterReducer',
   initialState,
   reducers: {
@@ -37,7 +37,7 @@ const FilterSlice = createSlice({
   },
 });
 
-export const { setFilter, resetFilters } = FilterSlice.actions;
+export const { setFilter, resetFilters } = filterSlice.actions;
 
 const selectFilterValues = (state: RootState) => state.filterReducer;
 
@@ -80,4 +80,4 @@ export const selectFilteredTaxSubmissions = createSelector(
   },
 );
 
-export default FilterSlice.reducer;
+export default filterSlice.reducer;

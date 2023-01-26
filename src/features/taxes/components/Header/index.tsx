@@ -1,14 +1,30 @@
 import React from 'react';
 import { HStack, Avatar, Button } from 'native-base';
 import { shareMessage } from '@/nativeModules';
+import { logout } from '@/features/login';
+import { useAppDispatch } from '@/hooks';
+import { resetAndNavigate } from '@navigation/RootNavigation';
+import { LOGIN } from '@navigation/Routes';
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    resetAndNavigate(LOGIN);
+  };
+
   return (
     <HStack justifyContent="space-between" padding={2} background="white">
       <Avatar size="sm">KM</Avatar>
-      <Button size="xs" onPress={() => shareMessage('Look how cool our app is 💯.')}>
-        Share
-      </Button>
+      <HStack space={3}>
+        <Button colorScheme="secondary" size="xs" onPress={() => handleLogout()}>
+          Logout
+        </Button>
+        <Button variant="solid" size="xs" onPress={() => shareMessage('Look how cool our app is 💯.')}>
+          Share
+        </Button>
+      </HStack>
     </HStack>
   );
 };
