@@ -19,8 +19,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    restoreSession: (state, action: PayloadAction<boolean>) => {
-      state.isLoggedIn = action.payload;
+    restoreSession: (state, action: PayloadAction<User>) => {
+      state.email = action.payload.email;
+      state.isLoggedIn = true;
     },
     logout: () => {},
   },

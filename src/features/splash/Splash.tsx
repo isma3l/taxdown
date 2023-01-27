@@ -15,7 +15,7 @@ const Splash = () => {
     const onAppStart = async () => {
       const user: User = await getData(USER_DATA);
       if (user) {
-        dispatch(restoreSession(true));
+        dispatch(restoreSession(user));
         resetAndNavigate(TAXES);
       } else {
         resetAndNavigate(LOGIN);

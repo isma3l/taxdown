@@ -1,4 +1,4 @@
-
+import { resetAndNavigate } from '@navigation/RootNavigation';
 
 jest.mock('react-native-image-picker', () => ({
     launchCamera: jest.fn()
@@ -8,4 +8,10 @@ jest.mock('react-native-permissions', () => require('react-native-permissions/mo
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock.js')
+);
+
+jest.mock('@navigation/RootNavigation', () => ({
+    resetAndNavigate: jest.fn(),
+    navigate: jest.fn()
+  })
 );
