@@ -1,10 +1,9 @@
 import React from 'react';
-import { Box, HStack, VStack, Text, Button, Spinner, FlatList } from 'native-base';
-import { selectLoading } from '../../slices';
-
-import TaxItem from '../TaxItem';
+import { Box, Spinner, FlatList } from 'native-base';
 import { Tax } from '@/model';
 import { useTypedSelector } from '@/hooks';
+import { selectLoading } from '../../slices';
+import TaxItem from '../TaxItem';
 
 type TaxListProps = {
   taxes: Tax[];
