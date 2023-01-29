@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack, Avatar, Button } from 'native-base';
+import { HStack, Button, Text } from 'native-base';
 import { shareMessage } from '@/nativeModules';
 import { logout } from '@/features/login';
 import { useAppDispatch } from '@/hooks';
@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <HStack justifyContent="space-between" padding={2} background="white">
-      <Avatar size="sm">KM</Avatar>
+      <Text size="sm">Tax Down</Text>
       <HStack space={3}>
         <Button colorScheme="secondary" size="xs" onPress={() => handleLogout()}>
           Logout

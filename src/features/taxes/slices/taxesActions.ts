@@ -6,8 +6,7 @@ export const fetchTaxes = createAsyncThunk<Tax[]>('taxes/fetch', async (_, { rej
   try {
     const taxes = await getTaxes();
     return taxes;
-  } catch (error) {
-    console.error('An error has occurred with the services');
-    return rejectWithValue(true);
+  } catch (error: any) {
+    return rejectWithValue(error.message);
   }
 });
