@@ -4,7 +4,7 @@ import { useAppDispatch } from '@/hooks';
 import { restoreSession } from '../login';
 import { getData } from '@/lib';
 import { resetAndNavigate } from '@navigation/RootNavigation';
-import { USER_DATA } from '@/config';
+import { USER_DATA } from '@/constants';
 import { LOGIN, TAXES } from '@navigation/Routes';
 import { User } from '@model';
 

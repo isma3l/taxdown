@@ -5,6 +5,7 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */
+    "types": ["react-native", "jest", "node", "@testing-library/jest-native"],  /* Specify type package names to be included without being referenced in a source file. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "baseUrl": "./src",                       /* Base directory to resolve non-absolute module names. */
     "paths": {

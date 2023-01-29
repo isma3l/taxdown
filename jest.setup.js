@@ -1,5 +1,3 @@
-import { resetAndNavigate } from '@navigation/RootNavigation';
-
 jest.mock('react-native-image-picker', () => ({
     launchCamera: jest.fn()
 }));
@@ -15,3 +13,7 @@ jest.mock('@navigation/RootNavigation', () => ({
     navigate: jest.fn()
   })
 );
+
+jest.mock('@navigation/RootNavigation', () => ({
+  navigate: jest.fn(),
+}));

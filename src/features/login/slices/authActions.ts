@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Credentials } from '../types';
 import { storeData } from '@/lib';
 import { User } from '@model';
-import { USER_DATA } from '@/config';
+import { USER_DATA } from '@/constants';
 import { resetAndNavigate } from '@navigation/RootNavigation';
 import { TAXES } from '@navigation/Routes';
 
