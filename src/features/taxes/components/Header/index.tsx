@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <HStack justifyContent="space-between" padding={2} background="white">
-      <Text bold fontSize="sm">
+      <Text bold fontSize="lg">
         Tax Down
       </Text>
       <HStack space={3}>

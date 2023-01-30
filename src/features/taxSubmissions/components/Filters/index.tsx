@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Keyboard } from 'react-native';
 import { VStack, Button } from 'native-base';
 import { useAppDispatch } from '@hooks';
 import { setFilter } from '../../slices';
@@ -30,6 +31,7 @@ const Filters = ({ data }: FiltersProps) => {
   };
 
   const onFilter = () => {
+    Keyboard.dismiss();
     dispatch(setFilter(filterValues));
   };
 

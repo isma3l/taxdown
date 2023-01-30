@@ -15,6 +15,7 @@ type CustomInputProps = {
   helperText?: string;
   keyboardType?: KeyboardTypeOptions;
   returnKeyType?: ReturnKeyTypeOptions;
+  textType?: 'text' | 'password';
 };
 
 const CustomInput = ({
@@ -29,6 +30,7 @@ const CustomInput = ({
   helperText = '',
   keyboardType = 'default',
   returnKeyType = 'default',
+  textType = 'text',
 }: CustomInputProps) => {
   const getErrorMessage = (): string => {
     const { type } = errors[id];
@@ -51,6 +53,7 @@ const CustomInput = ({
             value={value}
             onChangeText={onChange}
             isDisabled={disabled}
+            type={textType}
           />
           {id in errors ? (
             <FormControl.ErrorMessage>{getErrorMessage()}</FormControl.ErrorMessage>

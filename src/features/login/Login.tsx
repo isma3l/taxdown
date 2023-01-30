@@ -54,6 +54,7 @@ const Login = () => {
           disabled={loading}
           errorMessages={errorMessagePassword}
           rules={{ required: true }}
+          textType="password"
         />
         <Button mt="2" marginTop={8} disabled={loading} isLoading={loading} onPress={handleSubmit(onSubmit)}>
           Sign in

@@ -15,7 +15,7 @@ const Taxes = () => {
   const inactiveTaxes = useTypedSelector(selectInactiveTaxes);
 
   useEffect(() => {
-    dispatch(fetchTaxes());
+    //dispatch(fetchTaxes());
   }, [dispatch]);
 
   return (

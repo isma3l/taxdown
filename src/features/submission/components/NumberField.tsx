@@ -9,7 +9,7 @@ export type NumberFieldProps = INumberField & IBaseField;
 const NumberField = ({ id, label, placeholder, control, errors, disabled }: NumberFieldProps) => {
   const errorMessages = {
     required: 'This field is required',
-    pattern: 'Only numbers',
+    pattern: 'Only valid ages',
   };
 
   const rules = { required: true, pattern: ageRangeRegex };
@@ -24,7 +24,7 @@ const NumberField = ({ id, label, placeholder, control, errors, disabled }: Numb
       disabled={disabled}
       errorMessages={errorMessages}
       rules={rules}
-      helperText={'Only numbers are allowed'}
+      helperText={'Only ages between 17 and 120 years old'}
     />
   );
 };

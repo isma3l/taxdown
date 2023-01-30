@@ -17,7 +17,21 @@ const initialState: SubmissionState = {
   loadingCreate: false,
   inputFields: [],
   error: false,
-  submissions: {},
+  submissions: {
+    '1': [
+      { id: 's1', name: 'Pedro', surname: 'Vasquez', age: 23 },
+      { id: 's2', name: 'Marcos', surname: 'Luna', age: 34 },
+      { id: 's3', name: 'Luisa de lima peru', surname: 'Juliacaa', age: 29 },
+      { id: 's4', name: 'Lucho', surname: 'Salsa', age: 42 },
+    ],
+    '2': [
+      { id: 's5', name: 'Carlos', surname: 'Poesa', age: 13 },
+      { id: 's6', name: 'Huawey', surname: 'Eronwa' },
+      { id: 's7', name: 'Simpatica', surname: 'Dario', age: 79 },
+      { id: 's8', name: 'Corazon', surname: 'Arian' },
+      { id: 's9', name: 'Lucho', surname: 'Barros' },
+    ],
+  },
 };
 /*
 {
