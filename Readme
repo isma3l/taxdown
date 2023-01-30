@@ -4,13 +4,13 @@ A) Pasos previos a seguir antes de probar la app:
 
 Luego de clonar el Repo:
 
-1 - En carpeta raiz ejecutar “yarn install"
-2 - Entrar a  la carpeta de  iOS y ejecutar  "pod install"
+1 - En la carpeta raiz ejecutar “yarn install"
+2 - Entrar a la carpeta de iOS y ejecutar "pod install"
 
 B) Prueba de la app:
 
 - Para android:
-Ejecutar  "adb reverse tcp:8000 tcp:8000” para que el dispositivo Android pueda consumir la API de json-server.
+Ejecutar "adb reverse tcp:8000 tcp:8000” para que el dispositivo Android pueda consumir la API de json-server.
 Ejecutar: "yarn android”
 	
 - Para iOS:
@@ -22,6 +22,6 @@ La app se ejecutó desde xcode en un iphone 8.
 
 - No se consume una API para Obtener el listado de submissions creadas, se necesitaria un BE mas completo que json-server para conseguirlo y esto ampliaría el alcance de la solución.
 
-- Por lo explicado antes,  la pantalla de filtros solo permite filtrar los tax submissions que estan almacenados en el store, de manera que si se cierra la app o se cierra sesión, los submissions creados desapareceran y si no se crean submission se filtraran solo los taxes que devuelve la API.
+- Por lo explicado antes, la pantalla de filtros solo permite filtrar los tax submissions que estan almacenados en el store, de manera que si se cierra la app o se cierra sesión, los submissions creados desapareceran y si no se crean submission se filtraran solo los taxes que devuelve la API.
 
 - Se agregaron multiples tests de componentes y de slices, pero la cobertura no es del 100%
