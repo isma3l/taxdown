@@ -32,7 +32,9 @@ describe('Tests of the state of the input fields', () => {
       loadingFetch: false,
       loadingCreate: false,
       inputFields: [],
-      error: false,
+      creationError: false,
+      createdSubmission: false,
+      fetchError: false,
       submissions: {},
     });
   });
@@ -61,7 +63,7 @@ describe('Tests of the state of the input fields', () => {
     expect(result.payload).toBe('Error: An error has occurred with the services');
 
     const state = store.getState().submissionReducer;
-    expect(state.error).toBe(true);
+    expect(state.fetchError).toBe(true);
   });
 });
 
@@ -100,6 +102,6 @@ describe('Tests of the state of the submission creation', () => {
     expect(result.payload).toBe('Error: An error has occurred with the services');
 
     const state = store.getState().submissionReducer;
-    expect(state.error).toBe(true);
+    expect(state.creationError).toBe(true);
   });
 });

@@ -11,26 +11,7 @@ type TaxesState = {
 
 const initialState: TaxesState = {
   loading: false,
-  taxes: [
-    {
-      id: '1',
-      active: true,
-      name: 'Season 2020',
-      year: '2020',
-    },
-    {
-      id: '2',
-      active: true,
-      name: 'Season 2022',
-      year: '2022',
-    },
-    {
-      id: '3',
-      active: false,
-      name: 'Season 2023',
-      year: '2023',
-    },
-  ],
+  taxes: [],
   error: false,
 };
 
@@ -56,13 +37,9 @@ const taxesSlice = createSlice({
 });
 
 export const selectTaxes = (state: RootState) => state.taxesReducer.taxes;
-
 export const selectActiveTaxes = (state: RootState) => state.taxesReducer.taxes.filter(tax => tax.active === true);
-
 export const selectInactiveTaxes = (state: RootState) => state.taxesReducer.taxes.filter(tax => tax.active === false);
-
 export const selectLoading = (state: RootState) => state.taxesReducer.loading;
-
 export const selectError = (state: RootState) => state.taxesReducer.error;
 
 export default taxesSlice.reducer;

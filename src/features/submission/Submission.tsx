@@ -1,12 +1,22 @@
 import React, { useEffect } from 'react';
-import { Box, Button, VStack } from 'native-base';
+import { Box, Button, Text, VStack } from 'native-base';
 import { useForm } from 'react-hook-form';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/StackNavigator';
 import { useAppDispatch, useTypedSelector } from '@hooks';
 import { Submission as ISubmission } from '@model';
-import { Loading } from '@components';
-import { selectInputFields, fetchForm, createSubmission, selectLoadingFetch, selectLoadingCreate } from './slices';
+import { Loading, CustomModal } from '@components';
+import {
+  selectInputFields,
+  fetchForm,
+  createSubmission,
+  selectLoadingFetch,
+  selectLoadingCreate,
+  selectCreatedSubmission,
+  selectErrorFetch,
+  resetFlags,
+  selectCreationError,
+} from './slices';
 import { Field } from './components';
 
 type SubmissionProps = NativeStackScreenProps<RootStackParamList, 'Submission'>;
@@ -19,10 +29,14 @@ const Submission = ({ route }: SubmissionProps) => {
   } = useForm();
 
   const dispatch = useAppDispatch();
+
   const { taxId } = route?.params;
   const inputsFields = useTypedSelector(selectInputFields);
   const loadingFetch = useTypedSelector(selectLoadingFetch);
+  const errorFetch = useTypedSelector(selectErrorFetch);
   const loadingCreate = useTypedSelector(selectLoadingCreate);
+  const createdSubmission = useTypedSelector(selectCreatedSubmission);
+  const creationError = useTypedSelector(selectCreationError);
 
   useEffect(() => {
     dispatch(fetchForm(taxId));
@@ -35,6 +49,25 @@ const Submission = ({ route }: SubmissionProps) => {
   const fields = inputsFields.map((inputField, index) => (
     <Field key={index} {...inputField} control={control} errors={errors} disabled={loadingCreate} />
   ));
+
+  // Could be moved to a separate file, especially if some internationalization framework will be used
+  const modalContent = {
+    successfulCreation: {
+      title: 'Successful creation',
+      body: 'Submission was successfully uploaded',
+    },
+    wrongCreation: {
+      title: 'Error',
+      body: 'The submission was not loaded correctly',
+    },
+  };
+
+  const showModal = creationError || createdSubmission;
+  const modalData = creationError
+    ? modalContent.wrongCreation
+    : createdSubmission
+    ? modalContent.successfulCreation
+    : null;
 
   return (
     <VStack safeArea flex="1">
@@ -49,6 +82,14 @@ const Submission = ({ route }: SubmissionProps) => {
         width="90%">
         {loadingFetch ? (
           <Loading />
+        ) : errorFetch ? (
+          <Text fontWeight="semibold" color="red.500" margin="3">
+            An error occurred while obtaining the form
+          </Text>
+        ) : inputsFields.length === 0 ? (
+          <Text margin="3" fontWeight="semibold">
+            No forms at this time
+          </Text>
         ) : (
           <>
             <VStack width="100%" paddingX="8" paddingTop="4">
@@ -63,6 +104,12 @@ const Submission = ({ route }: SubmissionProps) => {
               onPress={handleSubmit(onSubmit)}>
               Create submission
             </Button>
+            <CustomModal
+              title={modalData ? modalData.title : ''}
+              body={modalData ? modalData.body : ''}
+              isVisible={showModal}
+              hideModal={() => dispatch(resetFlags())}
+            />
           </>
         )}
       </Box>

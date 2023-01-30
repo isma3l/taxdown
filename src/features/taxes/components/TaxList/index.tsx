@@ -25,9 +25,17 @@ const TaxList = ({ taxes }: TaxListProps) => {
           data={taxes}
           ListEmptyComponent={() => {
             if (hasError) {
-              <Text testID="testID-error">No taxes available</Text>;
+              return (
+                <Text testID="testID-error" fontWeight="semibold" color="red.500">
+                  An error occurred when obtaining taxes
+                </Text>
+              );
             }
-            return <Text testID="testID-emptyList">An error has occurred</Text>;
+            return (
+              <Text testID="testID-emptyList" fontWeight="semibold">
+                No taxes available
+              </Text>
+            );
           }}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <TaxItem {...item} />}

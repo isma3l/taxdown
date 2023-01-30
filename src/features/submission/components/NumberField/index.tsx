@@ -1,6 +1,6 @@
 import React from 'react';
 import { INumberField } from '@model';
-import { IBaseField } from './Field';
+import { IBaseField } from '../Field';
 import { CustomInput } from '@components';
 import { ageRangeRegex } from '@/utils';
 
@@ -24,6 +24,8 @@ const NumberField = ({ id, label, placeholder, control, errors, disabled }: Numb
       disabled={disabled}
       errorMessages={errorMessages}
       rules={rules}
+      keyboardType="numeric"
+      returnKeyType="done"
       helperText={'Only ages between 17 and 120 years old'}
     />
   );
