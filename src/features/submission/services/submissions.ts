@@ -10,6 +10,5 @@ export const getSubmissionForm = async (taxId: string): Promise<InputField[]> =>
 
 export const addSubmission = async (taxId: string, submission: Submission): Promise<Submission> => {
   const URL = `tax/${taxId}/form`;
-  console.log('taxID: ', taxId, 'submi: ', submission);
   return await post<Submission, Submission>(URL, submission);
 };
