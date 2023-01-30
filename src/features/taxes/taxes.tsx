@@ -4,7 +4,7 @@ import { Box, HStack, Button, Text } from 'native-base';
 import { useAppDispatch, useTypedSelector } from '@/hooks';
 import { fetchTaxes, selectActiveTaxes, selectInactiveTaxes } from './slices';
 import { TaxList, Header } from './components';
-import { TAX_SUBMISSIONS } from '@navigation/Routes';
+import { SCREEN_TAX_SUBMISSIONS } from '@navigation/Routes';
 import { navigate } from '@navigation/RootNavigation';
 
 const Tab = createMaterialTopTabNavigator();
@@ -37,7 +37,7 @@ const Taxes = () => {
           padding="1"
           alignSelf="center"
           width="70%"
-          onPress={() => navigate(TAX_SUBMISSIONS)}>
+          onPress={() => navigate(SCREEN_TAX_SUBMISSIONS)}>
           My tax submissions
         </Button>
       </HStack>

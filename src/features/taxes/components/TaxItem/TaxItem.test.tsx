@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import TaxItem from './index';
 import { WrapperNBProvider } from '@/utils';
-import { SUBMISSION } from '@navigation/Routes';
+import { SCREEN_SUBMISSION } from '@navigation/Routes';
 import { navigate } from '@/navigation/RootNavigation';
 
 const mockedProps = {
@@ -41,6 +41,6 @@ describe('TaxItem component testing', () => {
     const addButton = getByTestId(testIds.button);
     fireEvent.press(addButton);
 
-    expect(navigate).toBeCalledWith(SUBMISSION, { taxId: id });
+    expect(navigate).toBeCalledWith(SCREEN_SUBMISSION, { taxId: id });
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, HStack, VStack, Text, Button } from 'native-base';
 import { navigate } from '@navigation/RootNavigation';
-import { SUBMISSION } from '@navigation/Routes';
+import { SCREEN_SUBMISSION } from '@navigation/Routes';
 
 type TaxItemProps = {
   id: string;
@@ -30,7 +30,7 @@ const TaxItem = ({ name, year, id }: TaxItemProps) => {
           padding="1"
           alignSelf="center"
           color="black"
-          onPress={() => navigate(SUBMISSION, { taxId: id })}>
+          onPress={() => navigate(SCREEN_SUBMISSION, { taxId: id })}>
           Add
         </Button>
       </HStack>

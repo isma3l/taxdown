@@ -4,7 +4,7 @@ import { storeData } from '@/lib';
 import { User } from '@model';
 import { USER_DATA } from '@/constants';
 import { resetAndNavigate } from '@navigation/RootNavigation';
-import { TAXES } from '@navigation/Routes';
+import { SREEN_TAXES } from '@navigation/Routes';
 
 export const signIn = createAsyncThunk<User, Credentials>(
   'auth/signIn',
@@ -21,7 +21,7 @@ export const signIn = createAsyncThunk<User, Credentials>(
       };
 
       await storeData(USER_DATA, user);
-      resetAndNavigate(TAXES);
+      resetAndNavigate(SREEN_TAXES);
 
       return user;
     } catch (error: any) {

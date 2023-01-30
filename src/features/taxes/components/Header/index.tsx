@@ -4,14 +4,14 @@ import { shareMessage } from '@/nativeModules';
 import { logout } from '@/features/login';
 import { useAppDispatch } from '@/hooks';
 import { resetAndNavigate } from '@navigation/RootNavigation';
-import { LOGIN } from '@navigation/Routes';
+import { SCREEN_LOGIN } from '@navigation/Routes';
 
 const Header = () => {
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
-    resetAndNavigate(LOGIN);
+    resetAndNavigate(SCREEN_LOGIN);
   };
 
   return (

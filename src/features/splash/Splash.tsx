@@ -5,7 +5,7 @@ import { restoreSession } from '../login';
 import { getData } from '@/lib';
 import { resetAndNavigate } from '@navigation/RootNavigation';
 import { USER_DATA } from '@/constants';
-import { LOGIN, TAXES } from '@navigation/Routes';
+import { SCREEN_LOGIN, SREEN_TAXES } from '@navigation/Routes';
 import { User } from '@model';
 
 const Splash = () => {
@@ -16,9 +16,9 @@ const Splash = () => {
       const user: User = await getData(USER_DATA);
       if (user) {
         dispatch(restoreSession(user));
-        resetAndNavigate(TAXES);
+        resetAndNavigate(SREEN_TAXES);
       } else {
-        resetAndNavigate(LOGIN);
+        resetAndNavigate(SCREEN_LOGIN);
       }
     };
     onAppStart();
