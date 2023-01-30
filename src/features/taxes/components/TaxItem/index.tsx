@@ -3,7 +3,7 @@ import { Box, HStack, VStack, Text, Button } from 'native-base';
 import { navigate } from '@navigation/RootNavigation';
 import { SUBMISSION } from '@navigation/Routes';
 
-export type TaxItemProps = {
+type TaxItemProps = {
   id: string;
   name: string;
   year: string;
@@ -11,7 +11,7 @@ export type TaxItemProps = {
 
 const TaxItem = ({ name, year, id }: TaxItemProps) => {
   return (
-    <Box marginBottom={4}>
+    <Box marginBottom={4} testID="testID-taxItem">
       <HStack justifyContent="space-between" paddingX={2}>
         <VStack>
           <Text color="coolGray.600" bold testID="taxItemName">

@@ -31,7 +31,7 @@ const TableRow = <T extends Record<string, string | number>, K extends keyof T>(
     <>
       {data.map((item, index) => {
         return (
-          <HStack key={`row-${index}`} paddingX={1}>
+          <HStack testID="testID-row" key={`row-${index}`} paddingX={1}>
             {getRow(item)}
           </HStack>
         );

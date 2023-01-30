@@ -13,7 +13,3 @@ jest.mock('@navigation/RootNavigation', () => ({
     navigate: jest.fn()
   })
 );
-
-jest.mock('@navigation/RootNavigation', () => ({
-  navigate: jest.fn(),
-}));

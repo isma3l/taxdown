@@ -24,8 +24,8 @@ export const signIn = createAsyncThunk<User, Credentials>(
       resetAndNavigate(TAXES);
 
       return user;
-    } catch (error) {
-      return rejectWithValue(true);
+    } catch (error: any) {
+      return rejectWithValue(error.message);
     }
   },
 );

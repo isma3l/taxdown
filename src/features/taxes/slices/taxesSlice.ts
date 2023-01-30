@@ -63,4 +63,6 @@ export const selectInactiveTaxes = (state: RootState) => state.taxesReducer.taxe
 
 export const selectLoading = (state: RootState) => state.taxesReducer.loading;
 
+export const selectError = (state: RootState) => state.taxesReducer.error;
+
 export default taxesSlice.reducer;

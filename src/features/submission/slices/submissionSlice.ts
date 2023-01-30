@@ -17,7 +17,10 @@ const initialState: SubmissionState = {
   loadingCreate: false,
   inputFields: [],
   error: false,
-  submissions: {
+  submissions: {},
+};
+/*
+{
     '1': [
       { id: 's1', name: 'Pedro', surname: 'Vasquez', age: 23 },
       { id: 's2', name: 'Marcos', surname: 'Luna', age: 34 },
@@ -32,7 +35,7 @@ const initialState: SubmissionState = {
       { id: 's9', name: 'Lucho', surname: 'Barros' },
     ],
   },
-};
+*/
 
 const submissionSlice = createSlice({
   name: 'submissionReducer',

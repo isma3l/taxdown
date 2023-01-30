@@ -9,6 +9,7 @@ type TableHeaderProps<T, K extends keyof T> = {
 const TableHeader = <T, K extends keyof T>({ columns }: TableHeaderProps<T, K>) => {
   const header = columns.map(({ title, width }, index) => (
     <Text
+      testID="testID-tableHeader"
       bold
       width={width}
       key={`header-${title}`}

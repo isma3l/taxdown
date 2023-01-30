@@ -1,38 +1,46 @@
 import React from 'react';
-import { render, cleanup, fireEvent, screen } from '@testing-library/react-native';
-import TaxItem, { TaxItemProps } from './index';
+import { render, fireEvent } from '@testing-library/react-native';
+import TaxItem from './index';
 import { WrapperNBProvider } from '@/utils';
 import { SUBMISSION } from '@navigation/Routes';
 import { navigate } from '@/navigation/RootNavigation';
 
-const mockedProps: TaxItemProps = {
+const mockedProps = {
   id: '1',
   name: 'Tax season 2020',
   year: '2020',
+  testIds: {
+    name: 'taxItemName',
+    year: 'taxItemYear',
+    button: 'taxItemButtom',
+  },
 };
 
 describe('TaxItem component testing', () => {
-  it('When the component is displayed with its properties name and year', () => {
+  const renderTaxItem = () => {
     const { getByTestId } = render(
       <WrapperNBProvider>
         <TaxItem {...mockedProps} />
       </WrapperNBProvider>,
     );
+    return getByTestId;
+  };
 
-    expect(getByTestId('taxItemName')).toHaveTextContent(mockedProps.name);
-    expect(getByTestId('taxItemYear')).toHaveTextContent(mockedProps.year);
+  it('When the component is displayed with its properties name and year', () => {
+    const { name, year, testIds } = mockedProps;
+    const getByTestId = renderTaxItem();
+
+    expect(getByTestId(testIds.name)).toHaveTextContent(name);
+    expect(getByTestId(testIds.year)).toHaveTextContent(year);
   });
 
   it('Given you have a taxId, when you press the button to add a submission, you must navigate to the submission creation screen', () => {
-    const { getByTestId } = render(
-      <WrapperNBProvider>
-        <TaxItem {...mockedProps} />
-      </WrapperNBProvider>,
-    );
+    const { id, testIds } = mockedProps;
+    const getByTestId = renderTaxItem();
 
-    const addButton = getByTestId('taxItemButtom');
+    const addButton = getByTestId(testIds.button);
     fireEvent.press(addButton);
 
-    expect(navigate).toBeCalledWith(SUBMISSION, { taxId: mockedProps.id });
+    expect(navigate).toBeCalledWith(SUBMISSION, { taxId: id });
   });
 });

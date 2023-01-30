@@ -16,7 +16,9 @@ const Header = () => {
 
   return (
     <HStack justifyContent="space-between" padding={2} background="white">
-      <Text size="sm">Tax Down</Text>
+      <Text bold fontSize="sm">
+        Tax Down
+      </Text>
       <HStack space={3}>
         <Button colorScheme="secondary" size="xs" onPress={() => handleLogout()}>
           Logout
