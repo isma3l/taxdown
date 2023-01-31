@@ -11,6 +11,7 @@ B) Prueba de la app:
 
 - Para android:
 Ejecutar "adb reverse tcp:8000 tcp:8000” para que el dispositivo Android pueda consumir la API de json-server.
+Ejecutar "yarn fake-api" para correr json-server
 Ejecutar: "yarn android”
 	
 - Para iOS:
